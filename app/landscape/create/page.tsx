@@ -20,8 +20,12 @@ const Create = () => {
         <form 
             className="max-w-xl space-y-3 min-h-screen" 
             onSubmit={handleSubmit(async (data) => {
-                await axios.post('/api/projects', data);
-                router.push('/landscape');
+                try {
+                    await axios.post('/api/projects', data);
+                    router.push('/landscape');
+                } catch (error) {
+                    console.log(error)
+                }
             })}
         >
             <input 
