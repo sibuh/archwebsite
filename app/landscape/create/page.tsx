@@ -1,27 +1,50 @@
 'use client';
-import { TextField } from "@radix-ui/themes";
-import { TextArea } from "@radix-ui/themes";
+
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
-import { Button } from "@radix-ui/themes";
+import { useForm, Controller } from "react-hook-form";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { Button } from "@radix-ui/themes"; // Keep Button import if this is correct
 
+interface ProjectForm {
+    name: string;
+    description: string;
+}
 
 const Create = () => {
-    return ( 
-        <div className="max-w-xl space-y-3 min-h-screen">
-           <TextField.Root placeholder="Name">
-                <TextField.Slot>
-                </TextField.Slot>
-                
-            </TextField.Root>
+    const { register, control, handleSubmit } = useForm<ProjectForm>();
+    const router = useRouter();
 
-            {/* <TextArea placeholder="Description of project…" /> */}
-            <SimpleMDE placeholder="Description of project…" />
-            <Button>Create project</Button>
+    return (
+        <form 
+            className="max-w-xl space-y-3 min-h-screen" 
+            onSubmit={handleSubmit(async (data) => {
+                await axios.post('/api/projects', data);
+                router.push('/landscape');
+            })}
+        >
+            <input 
+                className="w-full p-2 border rounded" 
+                placeholder="Name" 
+                {...register('name')} 
+            />
 
+            <Controller 
+                name="description"
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                    <SimpleMDE 
+                        placeholder="Description of project…" 
+                        value={value} 
+                        onChange={onChange} 
+                    />
+                )}
+            />
             
-        </div>
-     );
+            <Button type="submit">Create project</Button>
+        </form>
+    );
 }
- 
+
 export default Create;
