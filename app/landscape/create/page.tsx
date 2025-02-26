@@ -5,7 +5,9 @@ import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Button } from "@radix-ui/themes"; // Keep Button import if this is correct
+import {Button,Callout} from "@radix-ui/themes"
+import { useState } from "react";
+
 
 interface ProjectForm {
     name: string;
@@ -15,9 +17,19 @@ interface ProjectForm {
 const Create = () => {
     const { register, control, handleSubmit } = useForm<ProjectForm>();
     const router = useRouter();
+    const[error,setError]= useState('');
 
     return (
-        <form 
+        <div>
+            {
+                error && (<Callout.Root>
+                    <Callout.Text>
+                        setError("unexpected error")
+                    </Callout.Text>
+                    </Callout.Root>
+                 ) 
+            }
+            <form 
             className="max-w-xl space-y-3 min-h-screen" 
             onSubmit={handleSubmit(async (data) => {
                 try {
@@ -48,6 +60,7 @@ const Create = () => {
             
             <Button type="submit">Create project</Button>
         </form>
+        </div>
     );
 }
 
