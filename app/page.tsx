@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import carImage from "../public/car.jpg"
 
 export const metadata: Metadata = {
   title: "arch website",
@@ -9,6 +11,14 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <p>Home page</p>
+      <Image
+      src={carImage}
+      alt="Picture of the car"
+       width={450} //automatically provided
+       height={500} //automatically provided
+      // blurDataURL="data:..." automatically provided
+      // placeholder="blur" // Optional blur-up while loading
+    />
     </div>
   );
 }
