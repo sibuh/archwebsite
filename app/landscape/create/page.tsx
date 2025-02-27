@@ -33,7 +33,7 @@ const Create = () => {
             className="max-w-xl space-y-3 min-h-screen" 
             onSubmit={handleSubmit(async (data) => {
                 try {
-                    await axios.post('/api/projects', data);
+                    await axios.post('/api/example', data);
                     router.push('/landscape');
                 } catch (error) {
                     console.log(error)
