@@ -1,85 +1,108 @@
-"use client";
+'use client';
+import { useState } from 'react';
+import { Button } from '@radix-ui/themes';
 
-import { useState, FormEvent } from "react";
-
-export default function UploadForm() {
+export default function UploadPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    // price: '',
+  });
   const [images, setImages] = useState<FileList | null>(null);
-  const [video, setVideo] = useState<File | null>(null);
-  const [formData, setFormData] = useState({ title: "", description: "" });
+  const [videos, setVideos] = useState<FileList | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!images || !video) {
-      alert("Please upload images and a video.");
-      return;
+    setLoading(true);
+
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('description', formData.description);
+    // data.append('price', formData.price);
+    
+    if (images) {
+      Array.from(images).forEach((image) => {
+        data.append('images', image);
+      });
+    }
+    
+    if (videos) {
+      Array.from(videos).forEach((video) => {
+        data.append('videos', video);
+      });
     }
 
-    const form = new FormData();
-    
-    // Add images to FormData
-    Array.from(images).forEach((image, index) => {
-      form.append("images", image);
-    });
-    
-    // Add video to FormData
-    form.append("video", video);
-    
-    // Add other form fields
-    form.append("title", formData.title);
-    form.append("description", formData.description);
-
     try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: form,
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: data,
       });
 
-      if (res.ok) {
-        alert("Files uploaded successfully!");
-      } else {
-        alert("Upload failed.");
-      }
+      if (!response.ok) throw new Error('Upload failed');
+      const result = await response.json();
+      alert('Upload successful!');
     } catch (error) {
-      console.error("Error uploading files:", error);
+      console.error(error);
+      alert('Upload failed');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Title"
-        value={formData.title}
-        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-        required
-      />
-      <textarea
-        placeholder="Description"
-        value={formData.description}
-        onChange={(e) =>
-          setFormData({ ...formData, description: e.target.value })
-        }
-        required
-      />
-      
-      {/* Multiple Images Upload */}
-      <input
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => setImages(e.target.files)}
-        required
-      />
-
-      {/* Single Video Upload */}
-      <input
-        type="file"
-        accept="video/*"
-        onChange={(e) => setVideo(e.target.files?.[0] || null)}
-        required
-      />
-
-      <button type="submit">Upload</button>
-    </form>
+    <div className='space-y-8 items-center justify-items-center'>
+      <h1>Post Project</h1>
+      <form onSubmit={handleSubmit}
+        className="flex flex-col w-2/3 space-y-4 min-h-screen"
+      >
+        <input
+          className="w-full p-2 border rounded"
+          type="text"
+          placeholder="Name"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          required
+        />
+        <textarea
+          className="w-full p-2 border rounded"
+          placeholder="Description"
+          value={formData.description}
+          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+          required
+        />
+        <div>
+          <label>Images </label>
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={(e) => setImages(e.target.files)}
+            required
+          />
+        </div>
+        <div>
+          <label>Videos </label>
+          <input
+            type="file"
+            accept="video/*"
+            multiple
+            onChange={(e) => setVideos(e.target.files)}
+          />
+        </div>
+        <Button
+          type="submit" 
+          disabled={loading}
+        >
+          {loading ? 'Uploading...' : 'Upload'}
+        </Button>
+        {/* <button 
+          type="submit" 
+          disabled={loading}
+          >
+          {loading ? 'Uploading...' : 'Upload'}
+        </button> */}
+      </form>
+    </div>
   );
 }
