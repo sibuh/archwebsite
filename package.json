@@ -16,6 +16,7 @@
     "easymd": "^1.0.2",
     "easymde": "^2.19.0",
     "formidable": "^3.5.2",
+    "framer-motion": "^12.4.7",
     "next": "^15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

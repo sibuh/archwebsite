@@ -1,6 +1,7 @@
 'use client';
 import Link from "next/link";
 import {FiList } from "react-icons/fi";
+import Logo from "./components/logo";
 import classNames from "classnames";
 import { useRouter,usePathname } from "next/navigation";
 const NavBar = () => {
@@ -27,8 +28,8 @@ const NavBar = () => {
     ]
     return ( 
         <nav className="flex space-x-36 border-b mt-2 ml-2 px-8 h-14 items-center">
-            <FiList onClick={()=>router.push("/sidebar")}/>
-           
+            {/* <FiList onClick={()=>router.push("/sidebar")}/> */}
+           <Logo />
             <ul className="flex space-x-10">
             {links.map(link=>
                <Link  key={link.href} href={link.href} 
