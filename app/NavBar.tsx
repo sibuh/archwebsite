@@ -32,7 +32,7 @@ const NavBar = () => {
         }
     ]
     return ( 
-        <nav className="flex space-x-36 border-b mt-2 ml-2 px-8 h-14 items-center">
+        <nav className="flex space-x-36 border-b mt-2  px-8 h-14 items-center ">
             {/* <FiList onClick={()=>router.push("/sidebar")}/> */}
            <Logo />
             <ul className="flex space-x-10">

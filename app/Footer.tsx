@@ -35,7 +35,7 @@ const Footer = () => {
         },
     ]
     return ( 
-        <footer className="flex flex-col justify-center space-y-7 h-40 bg-gray-800 text-white">
+        <footer className="flex flex-col justify-center space-y-7 h-40 bg-green-500 text-white">
             <div className="flex justify-center items-center">
                 <p >Our Contacts:</p>
             </div>
@@ -55,7 +55,7 @@ const Footer = () => {
             </ul>
             </div>
             <div className="flex justify-center items-center">
-                <p>© 2025 My Website</p>
+                <p>© 2025 Gomore PLC</p>
             </div>
             
         </footer>
