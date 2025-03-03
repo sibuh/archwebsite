@@ -36,7 +36,7 @@ export default function Projects() {
   if (!data) return <p>No profile data</p>
  
   return (
-    <div className="grid grid-cols-1 justify-items-center space-y-6 p-10">
+    <div className="grid grid-cols-1 justify-items-center space-y-6 p-10 pl-60">
       <div>
         <p className="font-extrabold font-sans">Projects Done</p>
       </div>

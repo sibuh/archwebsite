@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import SideBar from "./sidebar";
+import Image from "next/image";
+import fav from "../favicon.ico"
 
 export default function Nav() {
   const [isHovered, setIsHovered] = useState(false);
@@ -21,7 +23,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <div className="relative flex items-center">
+    <div className="flex items-center">
       {/* Logo / List Icon */}
       <motion.div
         onHoverStart={() => setIsHovered(true)}
@@ -36,7 +38,7 @@ export default function Nav() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
           >
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <svg width="30" height="30"  fill="none">
               <path
                 d="M3 6h18M3 12h18M3 18h18"
                 stroke="black"
@@ -46,18 +48,17 @@ export default function Nav() {
             </svg>
           </motion.div>
         ) : (
-          /* Logo (Default) */
-          <motion.svg
-            width="60"
-            height="60"
-            viewBox="0 0 100 100"
-            fill="none"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: isHovered ? 0 : 1 }}
-          >
-            <circle cx="40" cy="40" r="35" stroke="black" strokeWidth="5" />
-          </motion.svg>
-        )}
+
+            <motion.div>
+              <Image 
+              src={fav}
+              alt="logo image"
+              width={30}
+              height={30}
+              />
+            </motion.div>
+
+          )}
       </motion.div>
 
       {/* Sliding Sidebar (Appears Below the List Icon) */}

@@ -4,10 +4,15 @@ import {FiList } from "react-icons/fi";
 import Logo from "./components/logo";
 import classNames from "classnames";
 import { useRouter,usePathname } from "next/navigation";
+import {motion} from 'framer-motion'
 const NavBar = () => {
     const router =useRouter()
     const currentPath=usePathname()
     const links=[
+        {
+            href:"/",
+            label:"home"
+        },
         {
             href:"/landscape",
             label:"Landscape"
@@ -32,16 +37,21 @@ const NavBar = () => {
            <Logo />
             <ul className="flex space-x-10">
             {links.map(link=>
-               <Link  key={link.href} href={link.href} 
-               className={classNames({
-                'text-stone-800': link.href===currentPath,
-                'hover:text-red-600': link.href!==currentPath,
-                'transition-colors':true
-               })}> 
-                 {link.label}
-               </Link>
-            )
-            }
+                <motion.div
+                key={link.href}
+                whileHover={{scale:1.1}}
+                    >
+                    <Link  
+                         href={link.href} 
+                        className={classNames({
+                            'text-stone-800': link.href===currentPath,
+                            'hover:text-red-600': link.href!==currentPath,
+                            'transition-colors':true
+                        })}> 
+                        {link.label}
+                    </Link>
+                </motion.div>
+            )}
             </ul>
         </nav>
      );
