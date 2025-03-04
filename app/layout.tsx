@@ -28,7 +28,7 @@ export default function RootLayout({
       >
         <Theme accentColor="ruby">
             <NavBar />
-            <main className="pl-5">{children}</main>
+            <main className="pl-5 min-h-screen" >{children}</main>
             <Footer />
         </Theme>
       </body>

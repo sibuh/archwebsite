@@ -1,10 +1,16 @@
 import { NextRequest,NextResponse } from "next/server";
-import { Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import {z} from 'zod';
-import { prisma } from "@/prisma/client";
 import bcrypt from "bcryptjs";
+ 
+const prisma=new PrismaClient()
 
-
+export const config = {
+    api: {
+      bodyParser: false,
+    },
+  };
+  
 const loginRequest=z.object(
     {
         password: z.string().min(4,'password is required').max(10),
