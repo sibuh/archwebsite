@@ -30,6 +30,7 @@ export default function RootLayout({
             <NavBar />
             <main className="pl-5 min-h-screen" >{children}</main>
             <Footer />
+            {/* <ThemePanel /> */}
         </Theme>
       </body>
     </html>
