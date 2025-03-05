@@ -1,10 +1,8 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../lib/client"
 import {z} from "zod"
-
-const prisma =new PrismaClient()
 
 const signupRequest=z.object({
   firstName: z.string().min(3,'firstName is required').max(30),
@@ -50,12 +48,29 @@ export async function signup(body) {
   const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: "1h" });
 
   // Store token in cookies
-  cookies().set("auth", token, { httpOnly: true, path: "/", maxAge: 3600 });
+  // cookies().set("auth", token, { httpOnly: true, path: "/", maxAge: 3600 });
 
-  return {error:null, message: "Signup successful", user:newUser };
+  return {
+    error:null, 
+    message: "Signup successful", 
+    user:newUser,
+    token:token };
 }
 
+const loginRequest=z.object(
+    {
+        password: z.string().min(4,'password is required').max(10),
+        email: z.string().email().endsWith('@gmail.com','email is required'),
+    }
+)
+
+
 export async function login(email, password) {
+  const body=await request.json()
+    const validation=body.safeParse(loginRequest)
+    if(!validation.success)
+        return NextResponse.json(validation.error.format(),{status:400})
+
   const user = prisma.user.findUnique({
     where: email
   });
@@ -66,9 +81,9 @@ export async function login(email, password) {
   const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: "1h" });
 
   // Store token in cookies
-  cookies().set("auth", token, { httpOnly: true, path: "/", maxAge: 3600 });
+  // cookies().set("auth", token, { httpOnly: true, path: "/", maxAge: 3600 });
 
-  return {error:null, message: "Login successful" };
+  return {error:null, message: "Login successful",token: token };
 }
 
 export function logout() {

@@ -26,13 +26,13 @@
 
                     <input
                      className="w-full p-2 border rounded"
-                     type="text"
+                     type="password"
                      placeholder="Password"
                      onChange={handleChange}
                     /> 
                     <input
                     className="w-full p-2 border rounded"
-                    type="text"
+                    type="email"
                     placeholder="Email"
                     onChange={handleChange}
                     />

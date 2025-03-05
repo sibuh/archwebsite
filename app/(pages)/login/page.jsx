@@ -4,12 +4,12 @@
     return <div>
         <form>
             <input
-            type="text"
+            type="email"
             placeholder="Email"
             onChange={handleChange}
             />
             <input
-                type="text"
+                type="password"
                  placeholder="Password"
                  onChange={handleChange}
             /> 
