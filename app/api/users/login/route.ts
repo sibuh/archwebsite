@@ -1,7 +1,5 @@
 import { NextRequest,NextResponse } from "next/server";
-import {z} from 'zod';
-import bcrypt from "bcryptjs";
-import prisma from "../../../lib/client"
+import { login } from "../lib/auth";
  
 
 
@@ -13,7 +11,7 @@ export const config = {
   
 
 export async function POST(request:NextRequest){
-    
-    //generate token
-
+    const body=await request.json()
+    const response=login(body)
+    return NextResponse.json(response)
 }

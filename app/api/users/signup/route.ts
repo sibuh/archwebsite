@@ -14,5 +14,5 @@ export async function POST(request:NextRequest){
     const body=await request.json()
    const res = await signup(body)
    if (!res.error) throw res.error 
-   return NextResponse.json({user:res.user,status:201,message:res.message})
+   return NextResponse.json(res)
 };

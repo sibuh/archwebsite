@@ -17,7 +17,7 @@ model Project {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(255)
   description String   @db.Text
-  status      Status   @default(NOT_STARTED)
+  status      Status   @default(COMPLETED)
   imagePaths  String[]
   videoPaths  String[]
   createdAt   DateTime @default(now())

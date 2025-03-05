@@ -65,9 +65,8 @@ const loginRequest=z.object(
 )
 
 
-export async function login(email, password) {
-  const body=await request.json()
-    const validation=body.safeParse(loginRequest)
+export async function login(body) {
+    const validation=loginRequest.safeParse(body)
     if(!validation.success)
         return NextResponse.json(validation.error.format(),{status:400})
 
