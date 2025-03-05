@@ -7,9 +7,6 @@ export const config = {
     },
   };
 
-
-
-
 export async function POST(request:NextRequest){
     const body=await request.json()
    const res = await signup(body)
