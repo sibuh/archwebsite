@@ -22,8 +22,8 @@ import { useState } from "react";
         setProcessing(true);
         try{
             const res=await axios.post('/api/users/signup',user)
-
-            if (res.status!==201) throw new Error("Registration failed")
+            const data= res.data
+            if (data.status!==201) throw new Error("Registration failed")
             alert("Registration Successfull")
         }catch(err){
             alert(err);

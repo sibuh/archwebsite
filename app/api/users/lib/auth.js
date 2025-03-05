@@ -44,6 +44,7 @@ export async function signup(body) {
         phone:body.phone
     }
    })
+   console.log("created user: ",newUser)
 
   const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: "1h" });
 
@@ -54,7 +55,9 @@ export async function signup(body) {
     error:null, 
     message: "Signup successful", 
     user:newUser,
-    token:token };
+    token:token,
+    status:201
+   };
 }
 
 const loginRequest=z.object(
@@ -82,7 +85,7 @@ export async function login(body) {
   // Store token in cookies
   // cookies().set("auth", token, { httpOnly: true, path: "/", maxAge: 3600 });
 
-  return {error:null, message: "Login successful",token: token };
+  return {error:null, message: "Login successful",token: token,status:200 };
 }
 
 export function logout() {

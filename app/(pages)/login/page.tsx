@@ -11,7 +11,8 @@ import {Button,Spinner} from "@radix-ui/themes"
         setProcessing(true);
         try{
             const response=await axios.post('/api/users/login',param)
-            if(response.status!==200) throw new Error("Login Failed")
+            const data=response.data
+            if(data.status!==200) throw new Error("Login Failed")
             alert("Loged in Successfully")
         }catch(err){
             alert(err)
@@ -33,8 +34,8 @@ import {Button,Spinner} from "@radix-ui/themes"
             <input
                 className="p-2 border rounded"
                 type="password"
-                 placeholder="Password"
-                 onChange={(e)=>setParam({...param,password:e.target.value})}
+                placeholder="Password"
+                onChange={(e)=>setParam({...param,password:e.target.value})}
             /> 
             <Button type="submit">{processing?<Spinner />:<p>Login</p>} </Button>
         </form>}  
