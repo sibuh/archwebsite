@@ -21,20 +21,13 @@ const NavBar = () => {
             href:"/interior-design",
             label:"Interior Design"
         }, 
-        {
-            href:"/login",
-            label:"Login"
-        },
-        {
-            href:"/signup",
-            label:"Signup"
-        }
+        
     ]
     return ( 
         <nav className="flex space-x-36 border-b mt-2  px-8 h-14 items-center">
             {/* <FiList onClick={()=>router.push("/sidebar")}/> */}
            <Logo />
-            <ul className="flex space-x-10">
+            <ul className="flex space-x-10 ">
             {links.map(link=>
                 <motion.div
                 key={link.href}
@@ -51,6 +44,10 @@ const NavBar = () => {
                     </Link>
                 </motion.div>
             )}
+            </ul>
+            <ul className="flex space-x-8 border rounded-md p-2 mr-auto">
+                <li><Link href={"/signup"}>Signup</Link></li>
+                <li><Link href={"/login"}>Login</Link> </li>
             </ul>
         </nav>
      );
