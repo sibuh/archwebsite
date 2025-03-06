@@ -11,9 +11,8 @@ import {Button,Spinner} from "@radix-ui/themes"
         setProcessing(true);
         try{
             const response=await axios.post('/api/users/login',param)
-            const data=response.data
-            console.log("login respone",data)
-            if(response.status!==200) throw new Error("Login Failed")
+            if(response.status!==200) throw new Error(response.data.error)
+            setParam({password:"",email:""})
             alert("Loged in Successfully")
         }catch(err){
             alert(err)

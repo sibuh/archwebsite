@@ -6,15 +6,15 @@ import axios from "axios";
 import { useState } from "react";
 
  const Signup= () => {
-
-    const[user,setUser]=useState({
+    const initialState={
         first_name:"",
         last_name:"",
         username:"",
         password:"",
         email:"",
         phone:""
-    });
+    }
+    const[user,setUser]=useState(initialState);
     const [processing,setProcessing]=useState(false);
 
     const handleSubmit =async (e: React.FormEvent)=>{
@@ -23,6 +23,7 @@ import { useState } from "react";
         try{
             const res=await axios.post('/api/users/signup',user)
             if (res.status!==201) throw new Error(res.data.error)
+            setUser(initialState)
             alert("Registration Successfull")
         }catch(err){
             alert(err);
