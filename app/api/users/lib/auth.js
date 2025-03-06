@@ -21,15 +21,29 @@ const SECRET_KEY = "12345678901234567890123456789012"; // Use env variables in p
 
 export async function signup(body) {
   const validation= signupRequest.safeParse(body)
+  console.log("received data",sign)
    if (!validation.success)
-        return {error:validation.error.format(),message:"Failed to signup",user:null }
+        return {
+      error:validation.error.format(),
+      message:"Failed to signup",
+      user:null,
+      token:"",
+      status:400
+     }
 
    const existingUser =prisma.user.findUnique({
     where:{
       email:body.email
     }
    });
-   if (existingUser) return {error: new Error("User already exists"),message:"Failed to signup",user:null };
+   if (existingUser) return {
+    error: new Error("User already exists"),
+    message:"Failed to signup",
+    user:null,
+    token:"",
+    status:400
+
+   };
  
    //hash password
    const hashedPassword =await bcrypt.hash(body.password,10);
@@ -60,33 +74,7 @@ export async function signup(body) {
    };
 }
 
-const loginRequest=z.object(
-    {
-        password: z.string().min(4,'password is required').max(10),
-        email: z.string().email().endsWith('@gmail.com','email is required'),
-    }
-)
 
-
-export async function login(body) {
-    const validation=loginRequest.safeParse(body)
-    if(!validation.success)
-        return NextResponse.json(validation.error.format(),{status:400})
-
-  const user = prisma.user.findUnique({
-    where: email
-  });
-  if (!user || !(await bcrypt.compare(password, user.password))) {
-    return {error: new Error("Invalid credentials"),message:"failed to login"};
-  }
-
-  const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: "1h" });
-
-  // Store token in cookies
-  // cookies().set("auth", token, { httpOnly: true, path: "/", maxAge: 3600 });
-
-  return {error:null, message: "Login successful",token: token,status:200 };
-}
 
 export function logout() {
   cookies().delete("auth");

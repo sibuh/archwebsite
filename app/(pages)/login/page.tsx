@@ -12,7 +12,8 @@ import {Button,Spinner} from "@radix-ui/themes"
         try{
             const response=await axios.post('/api/users/login',param)
             const data=response.data
-            if(data.status!==200) throw new Error("Login Failed")
+            console.log("login respone",data)
+            if(response.status!==200) throw new Error("Login Failed")
             alert("Loged in Successfully")
         }catch(err){
             alert(err)
@@ -24,7 +25,7 @@ import {Button,Spinner} from "@radix-ui/themes"
     return <div className="grid justify-items-center">
         <div><p>Login</p></div>
         <div>
-        {processing?<p></p>: <form className="space-y-3 flex flex-col" onSubmit={handleSubmit}>
+        {!processing? <form className="space-y-3 flex flex-col" onSubmit={handleSubmit}>
             <input
             className="p-2 border rounded"
             type="email"
@@ -37,8 +38,8 @@ import {Button,Spinner} from "@radix-ui/themes"
                 placeholder="Password"
                 onChange={(e)=>setParam({...param,password:e.target.value})}
             /> 
-            <Button type="submit">{processing?<Spinner />:<p>Login</p>} </Button>
-        </form>}  
+            <Button type="submit"><p>Login</p> </Button>
+        </form>:<Spinner />}  
         </div>
     </div>
 }
