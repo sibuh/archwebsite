@@ -24,8 +24,8 @@ const NavBar = () => {
         
     ]
     return ( 
-        <nav className="flex space-x-36 border-b mt-2  px-8 h-14 items-center">
-            {/* <FiList onClick={()=>router.push("/sidebar")}/> */}
+        <div className="flex border-b mt-2  px-8 h-14 items-center">
+            <nav className="flex space-x-36 ">
            <Logo />
             <ul className="flex space-x-10 ">
             {links.map(link=>
@@ -45,11 +45,14 @@ const NavBar = () => {
                 </motion.div>
             )}
             </ul>
-            <ul className="flex space-x-8 border rounded-md p-2 mr-auto">
-                <li><Link href={"/signup"}>Signup</Link></li>
-                <li><Link href={"/login"}>Login</Link> </li>
-            </ul>
-        </nav>
+            </nav>
+            <div className="ms-8">
+                <ul className="flex space-x-8 border rounded-md p-2 mr-auto">
+                    <li><Link href={"/signup"}>Signup</Link></li>
+                    <li><Link href={"/login"}>Login</Link> </li>
+                </ul>
+            </div>
+        </div>
      );
 }
  
