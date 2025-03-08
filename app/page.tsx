@@ -1,26 +1,48 @@
 import Link from "next/link"
 import Image from "next/image"
 import BestHome from '../public/best_home.jpg'
+import Architect from '../public/architect.png'
+import Interior from '../public/interior.png'
 import { Button } from "@radix-ui/themes"
+import EnterAnimation from "./components/EnterAnimation"
  
 export default function Home() {
   
  
   return (
-    <div className="grid justify-center pt-2 bg-lime-200">
+    <div className="grid justify-center pt-2 bg-gray-50">
       <h1 className="justify-self-center font-mono font-extrabold"> Well come to Gomore </h1>
       
       <div className="flex mt-10 space-x-3 pt-2">
-        <div className="bg-amber-300 pt-2">
-          <h2 className="justify-self-center font-bold">What we do!</h2>
+        <div className="bg-slate-100 pt-2 rounded-2xl">
+          <h2 className="flex justify-center font-bold mb-2">What we do!</h2>
           <ul className="flex flex-col space-y-4 p-1">
-            <Link href="/interior-design"><Button>Interior Design</Button></Link>
-            <Link href="/architecture"><Button>Architectural Design</Button></Link>
-
+            <div className="flex space-x-2">
+              <EnterAnimation />
+              <Link href="/interior-design"><Button>Interior Design</Button></Link>
+            </div>
+            <div className="flex space-x-2">
+              <EnterAnimation />
+              <Link href="/architecture"><Button>Architectural Design</Button></Link>
+            </div>
           </ul>
         </div>
 
-        <Image src={BestHome} alt="best building image" />
+        <Image src={BestHome} alt="best building image" className="rounded-2xl" />
+      </div>
+      <div className="flex m-4 space-x-4">
+       <Image src={Architect} width={300} alt="architect" className="rounded-2xl"/> 
+       <Image src={Interior} width={300} alt="interior design" className="rounded-2xl"/>
+       <div>
+        <p className="font-bold">Our Values</p>
+          <ul>
+            <li className="relative pl-5 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-3 before:h-3 before:rounded-full before:bg-green-500">Customer First</li>
+            <li className="relative pl-5 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-3 before:h-3 before:rounded-full before:bg-yellow-500">Quality</li>
+            <li className="relative pl-5 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-3 before:h-3 before:rounded-full before:bg-red-500">Short Delivery</li>
+            <li className="relative pl-5 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-3 before:h-3 before:rounded-full before:bg-blue-500">Appropriate Pice</li>
+          </ul>
+          
+       </div>
       </div>
 
     </div>

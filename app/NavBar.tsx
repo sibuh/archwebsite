@@ -1,12 +1,10 @@
 'use client';
 import Link from "next/link";
 import Logo from "./components/logo";
-import UploadPage from "./(pages)/dashboard/page";
 import classNames from "classnames";
-import { useRouter,usePathname } from "next/navigation";
-import {motion} from 'framer-motion'
+import { usePathname } from "next/navigation";
+import {motion} from 'motion/react'
 const NavBar = () => {
-    const router =useRouter()
     const currentPath=usePathname()
     const links=[
         {

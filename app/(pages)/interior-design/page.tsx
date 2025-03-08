@@ -18,6 +18,8 @@ interface Project {
 }
 
 import { useState, useEffect } from 'react'
+import { Spinner } from "@radix-ui/themes";
+import LoadingThreeDotsJumping from "@/app/components/LoadTreeDotsJamping";
  
 export default function InteriorDesign() {
   const [data, setData] = useState<Project[]>([])
@@ -32,49 +34,51 @@ export default function InteriorDesign() {
       })
   }, [])
  
-  if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>No profile data</p>
  
   return (
-    <div className="grid grid-cols-1 justify-items-center space-y-6 p-10 pl-60">
-      <div>
-        <p className="font-extrabold font-sans">Projects Done</p>
+      <div className="flex justify-center">
+        {
+          isLoading?<LoadingThreeDotsJumping />:<div className="grid grid-cols-1 justify-items-center space-y-6 p-10 pl-60">
+          <div>
+            <p className="font-extrabold font-sans">Projects Done</p>
+          </div>
+          <div>
+              {data.map((project)=>
+                <div key={project.id} className="space-x-10 inline-flex">
+                    <div className="font-sans w-80 ">
+                      <h2 className="font-bold">{project.name}</h2>
+                      <p>{project.description}</p>
+                      <p>{project.status}</p>
+                    </div>
+                    <div >
+                      <Carousel
+                        width={450}
+                        dynamicHeight
+                      >
+                        {project.imagePaths.map((path)=>
+                          <Image
+                            key={path}
+                            className="rounded-md"
+                            src={path}
+                            alt="Project picture"
+                            width={200} 
+                            height={300} 
+                          />
+                        )}
+                        <video 
+                          className="rounded-md"
+                          width={450}
+                          height={600}
+                          src={project.videoPaths[0]}>
+                         </video>
+                      </Carousel>
+                    </div>
+                    
+                 </div>
+                )}  
+          </div>
+        </div>
+        }
       </div>
-      <div>
-          {data.map((project)=>
-            <div key={project.id} className="space-x-10 inline-flex">
-                <div className="font-sans w-80 ">
-                  <h2 className="font-bold">{project.name}</h2>
-                  <p>{project.description}</p>
-                  <p>{project.status}</p>
-                </div>
-                <div >
-                  <Carousel
-                    width={450}
-                    dynamicHeight
-                  >
-                    {project.imagePaths.map((path)=>
-                      <Image
-                        key={path}
-                        className="rounded-md"
-                        src={path}
-                        alt="Project picture"
-                        width={200} 
-                        height={300} 
-                      />
-                    )}
-                    <video 
-                      className="rounded-md"
-                      width={450}
-                      height={600}
-                      src={project.videoPaths[0]}>
-                     </video>
-                  </Carousel>
-                </div>
-                
-             </div>
-            )}  
-      </div>
-    </div>
   )
 }
