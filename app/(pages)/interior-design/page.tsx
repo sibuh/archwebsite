@@ -1,11 +1,80 @@
-const Planning = () => {
-    return ( 
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-            <p>
-                This Interior design page
-            </p>
-        </div>
-     );
+'use client';
+
+import Image from "next/image";
+// import Video from "next-video"
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+
+
+interface Project {
+  id:string,
+  name:string
+  description:string
+  status:string
+  imagePaths:string[]
+  videoPaths:string[]
+  createdAt:Date
+  updatedAt:Date
 }
+
+import { useState, useEffect } from 'react'
  
-export default Planning;
+export default function InteriorDesign() {
+  const [data, setData] = useState<Project[]>([])
+  const [isLoading, setLoading] = useState(true)
+ 
+  useEffect(() => {
+    fetch('/api/projects/list')
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data)
+        setLoading(false)
+      })
+  }, [])
+ 
+  if (isLoading) return <p>Loading...</p>
+  if (!data) return <p>No profile data</p>
+ 
+  return (
+    <div className="grid grid-cols-1 justify-items-center space-y-6 p-10 pl-60">
+      <div>
+        <p className="font-extrabold font-sans">Projects Done</p>
+      </div>
+      <div>
+          {data.map((project)=>
+            <div key={project.id} className="space-x-10 inline-flex">
+                <div className="font-sans w-80 ">
+                  <h2 className="font-bold">{project.name}</h2>
+                  <p>{project.description}</p>
+                  <p>{project.status}</p>
+                </div>
+                <div >
+                  <Carousel
+                    width={450}
+                    dynamicHeight
+                  >
+                    {project.imagePaths.map((path)=>
+                      <Image
+                        key={path}
+                        className="rounded-md"
+                        src={path}
+                        alt="Project picture"
+                        width={200} 
+                        height={300} 
+                      />
+                    )}
+                    <video 
+                      className="rounded-md"
+                      width={450}
+                      height={600}
+                      src={project.videoPaths[0]}>
+                     </video>
+                  </Carousel>
+                </div>
+                
+             </div>
+            )}  
+      </div>
+    </div>
+  )
+}

@@ -1,80 +1,28 @@
-'use client';
-
-import Image from "next/image";
-// import Video from "next-video"
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
-
-
-interface Project {
-  id:string,
-  name:string
-  description:string
-  status:string
-  imagePaths:string[]
-  videoPaths:string[]
-  createdAt:Date
-  updatedAt:Date
-}
-
-import { useState, useEffect } from 'react'
+import Link from "next/link"
+import Image from "next/image"
+import BestHome from '../public/best_home.jpg'
+import { Button } from "@radix-ui/themes"
  
-export default function Projects() {
-  const [data, setData] = useState<Project[]>([])
-  const [isLoading, setLoading] = useState(true)
- 
-  useEffect(() => {
-    fetch('/api/projects/list')
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data)
-        setLoading(false)
-      })
-  }, [])
- 
-  if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>No profile data</p>
+export default function Home() {
+  
  
   return (
-    <div className="grid grid-cols-1 justify-items-center space-y-6 p-10 pl-60">
-      <div>
-        <p className="font-extrabold font-sans">Projects Done</p>
+    <div className="grid justify-center pt-2 bg-lime-200">
+      <h1 className="justify-self-center font-mono font-extrabold"> Well come to Gomore </h1>
+      
+      <div className="flex mt-10 space-x-3 pt-2">
+        <div className="bg-amber-300 pt-2">
+          <h2 className="justify-self-center font-bold">What we do!</h2>
+          <ul className="flex flex-col space-y-4 p-1">
+            <Link href="/interior-design"><Button>Interior Design</Button></Link>
+            <Link href="/architecture"><Button>Architectural Design</Button></Link>
+
+          </ul>
+        </div>
+
+        <Image src={BestHome} alt="best building image" />
       </div>
-      <div>
-          {data.map((project)=>
-            <div key={project.id} className="space-x-10 inline-flex">
-                <div className="font-sans w-80 ">
-                  <h2 className="font-bold">{project.name}</h2>
-                  <p>{project.description}</p>
-                  <p>{project.status}</p>
-                </div>
-                <div >
-                  <Carousel
-                    width={450}
-                    dynamicHeight
-                  >
-                    {project.imagePaths.map((path)=>
-                      <Image
-                        key={path}
-                        className="rounded-md"
-                        src={path}
-                        alt="Project picture"
-                        width={200} 
-                        height={300} 
-                      />
-                    )}
-                    <video 
-                      className="rounded-md"
-                      width={450}
-                      height={600}
-                      src={project.videoPaths[0]}>
-                     </video>
-                  </Carousel>
-                </div>
-                
-             </div>
-            )}  
-      </div>
+
     </div>
   )
 }
