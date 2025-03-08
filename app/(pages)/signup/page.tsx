@@ -78,7 +78,7 @@ import { useState } from "react";
                             value={user.phone}
                             onChange={(e)=>setUser({...user,phone:e.target.value})}
                         />
-                    <Button type="submit" disabled={processing}>Register </Button>
+                    <Button type="submit" disabled={processing} className="ring-2">Register </Button>
                     </form>:<Spinner />}
            </div>
  }

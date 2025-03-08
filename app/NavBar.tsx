@@ -48,7 +48,9 @@ const NavBar = () => {
                 </ul>
             </nav>
             {
-                token&&<div className="place-items-center m-auto"><Link href={"/dashboard"}> Upload Project</Link></div>
+                token&&<div className="place-items-center m-auto">
+                    <Link href={"/dashboard"}> Upload Project</Link>
+                    </div>
             }
             <div className="m-auto justify-stretch">
                 <ul className="flex space-x-8 border rounded-md p-2 mr-auto">
