@@ -12,6 +12,7 @@ interface Project {
   id:string,
   name:string
   description:string
+  category: string
   status:string
   imagePaths:string[]
   videoPaths:string[]
@@ -37,7 +38,7 @@ export default function Architecture() {
 
   return (
        <div className="flex justify-center mt-6">
-          {isLoading?<LoadingThreeDotsJumping  />:<div className="grid grid-cols-1 justify-items-center space-y-6 p-10 pl-60">
+          {isLoading?  (<div className="mt-40"><LoadingThreeDotsJumping  /></div>) :<div className="grid grid-cols-1 justify-items-center space-y-6 p-10 pl-60">
           <div>
             <p className="font-extrabold font-sans">Projects Done</p>
           </div>

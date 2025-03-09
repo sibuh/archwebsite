@@ -1,11 +1,34 @@
 'use client';
 import { useState } from 'react';
-const categories=['Arcitectural Design','Interior Design']
+const categories=[
+  {
+    
+    label:'Architecture',
+    category:'Arcitectural',
+
+  },
+  {
+    label: 'Interior',
+    category:'interior'
+
+  },
+  {
+    label: 'Landscape',
+    category:'landscape'
+
+  },
+  {
+    label: 'Structural',
+    category:'structural'
+
+  }
+
+]
 export default function UploadPage() {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    
+    category:'',
   });
   const [files, setFiles] = useState<File[]>([]);
   const [videos,setVideos]=useState<File[]>([]);
@@ -18,7 +41,7 @@ export default function UploadPage() {
     const data = new FormData();
     data.append('name', formData.name);
     data.append('description', formData.description);
-    // data.append('price', formData.price);
+    data.append('category',formData.category);
     
     files.forEach(file => {
       data.append('files', file);
@@ -26,6 +49,7 @@ export default function UploadPage() {
     videos.forEach(video=>{
       data.append('videos',video);
     });
+    console.log("data",data)
 
     try {
       const response = await fetch('/api/projects/create', {
@@ -61,9 +85,16 @@ export default function UploadPage() {
         />
         <div className='flex flex-col space-y-1 w-full p-2 border rounded'>
           <label>Select Category</label>
-          <select className='p-2 bg-white border rounded'>
+          <select 
+          className='p-2 bg-white border rounded' 
+          value={formData.category}
+          onChange={(e)=>setFormData({...formData,category:e.target.value})}
+          >
             {
-              categories.map((category)=><option value={category}>{category}</option>)
+              categories.map((category)=>
+              <option
+               key={category.category} 
+               value={category.category}>{category.label}</option>)
             }
           </select>
         </div>
