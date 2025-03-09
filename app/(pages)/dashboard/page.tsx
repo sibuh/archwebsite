@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-
+const categories=['Arcitectural Design','Interior Design']
 export default function UploadPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -59,6 +59,14 @@ export default function UploadPage() {
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           required
         />
+        <div className='flex flex-col space-y-1 w-full p-2 border rounded'>
+          <label>Select Category</label>
+          <select className='p-2 bg-white border rounded'>
+            {
+              categories.map((category)=><option value={category}>{category}</option>)
+            }
+          </select>
+        </div>
         <textarea
           placeholder="Description"
           className="w-full p-2 border rounded"
