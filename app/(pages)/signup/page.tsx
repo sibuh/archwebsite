@@ -22,7 +22,12 @@ import { useState } from "react";
         setProcessing(true);
         try{
             const res=await axios.post('/api/users/signup',user)
+
             if (res.status!==201) throw new Error(res.data.error)
+
+            localStorage.setItem("token",res.data.token)
+            sessionStorage.setItem("token",res.data.token)
+
             setUser(initialState)
             alert("Registration Successfull")
         }catch(err){

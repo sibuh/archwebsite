@@ -2,11 +2,10 @@
 import Link from "next/link";
 import Logo from "./components/logo";
 import classNames from "classnames";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {motion} from 'motion/react'
 const NavBar = () => {
     const currentPath=usePathname()
-    const router=useRouter()
     const links=[
         {
             href:"/",
@@ -23,7 +22,7 @@ const NavBar = () => {
         
     ]
    
-    const token =true
+    const token =localStorage.getItem("token")
     return ( 
         <div className="flex border-b mt-2  px-8 h-14 ">
             <nav className="flex space-x-36 ">

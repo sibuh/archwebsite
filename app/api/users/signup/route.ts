@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {z} from "zod"
 import prisma from "../../../lib/client"
 import bcrypt from "bcryptjs";
-// import jwt from "jsonwebtoken";
+import auth from "../lib/auth"
 
 const signupRequest=z.object({
   first_name: z.string().min(3,'firstName is required').max(30),
@@ -64,16 +64,13 @@ export async function POST(request:NextRequest){
       }
      })
   
-    // const token = jwt.sign({ newUser }, SECRET_KEY, { expiresIn: "1h" });
+  const token = auth.generateToken(newUser);
   
-    // Store token in cookies
-    // cookies().set("auth", token, { httpOnly: true, path: "/", maxAge: 3600 });
-   
    return NextResponse.json(
     {error:null, 
     message: "Signup successful", 
     user:newUser,
-    token:"",},
+    token:token,},
   {
     status:201});
 };
