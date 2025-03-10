@@ -17,6 +17,7 @@ model Project {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(255)
   description String   @db.Text
+  category Category    @default(ARCHITECTURAL)
   status      Status   @default(COMPLETED)
   imagePaths  String[]
   videoPaths  String[]
@@ -28,6 +29,13 @@ enum Status {
   COMPLETED
   IN_PROGRES
   NOT_STARTED
+}
+
+enum Category {
+  LANDSCAPE
+  ARCHITECTURAL
+  STRUCTURAL
+  INTERIOR
 }
 
 model User {

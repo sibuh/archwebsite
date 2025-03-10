@@ -1,7 +1,6 @@
 'use client';
 
 import Image from "next/image";
-// import Video from "next-video"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
@@ -19,7 +18,6 @@ interface Project {
 }
 
 import { useState, useEffect } from 'react'
-import { Spinner } from "@radix-ui/themes";
 import LoadingThreeDotsJumping from "@/app/components/LoadTreeDotsJamping";
  
 export default function InteriorDesign() {
@@ -27,7 +25,7 @@ export default function InteriorDesign() {
   const [isLoading, setLoading] = useState(true)
  
   useEffect(() => {
-    fetch('/api/projects/list')
+    fetch('/api/projects/list?category=INTERIOR')
       .then((res) => res.json())
       .then((data) => {
         setData(data)

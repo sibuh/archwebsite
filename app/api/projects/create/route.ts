@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 import { promises as fs } from 'fs';
 import path from 'path';
 import prisma from '../../../lib/client'
@@ -11,12 +10,14 @@ export async function POST(request: Request) {
     const videos=formData.getAll('videos');
     const name = formData.get('name');
     const description = formData.get('description');
+    const category=formData.get('category');
     // const price = formData.get('price');
 
     // Validate fields
-    if (!name || !description || files.length === 0 || videos.length===0) {
+    if (!name || !description || !category || files.length === 0 || videos.length===0) {
       console.log("validation failed","name:",name,"description:",description,
         "length of files:",files.length,"length of videos",videos.length)
+        console.log("category:==>",category)
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -63,7 +64,7 @@ export async function POST(request: Request) {
       data: {
         name: name.toString(),
         description: description.toString(),
-        // price: parseFloat(price.toString()),
+        category: category==="ARCHITECURAL"?"ARCHITECTURAL":category==="LANDSCAPE"?"LANDSCAPE":category==="INTERIOR"?"INTERIOR":"STRUCTURAL",
         imagePaths,
         videoPaths,
       },

@@ -2,25 +2,27 @@
 import Link from "next/link";
 import Logo from "./components/logo";
 import classNames from "classnames";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {motion} from 'motion/react'
 const NavBar = () => {
     const currentPath=usePathname()
+    const router=useRouter()
     const links=[
         {
             href:"/",
-            label:"Home"
+            label:"Home",
         },
         {
             href:"/architecture",
-            label:"Architecture"
+            label:"Architecture",
         }, 
         {
             href:"/interior-design",
-            label:"Interior Design"
+            label:"Interior Design",
         }, 
         
     ]
+   
     const token =true
     return ( 
         <div className="flex border-b mt-2  px-8 h-14 ">
@@ -38,7 +40,8 @@ const NavBar = () => {
                                     'text-stone-800': link.href===currentPath,
                                     'hover:text-red-600': link.href!==currentPath,
                                     'transition-colors':true
-                                })}> 
+                                })}
+                                > 
                                 {link.label}
                             </Link>
                         </motion.div>

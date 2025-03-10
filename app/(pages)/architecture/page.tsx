@@ -1,9 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { Spinner } from "@radix-ui/themes";
 import LoadingThreeDotsJumping from "@/app/components/LoadTreeDotsJamping";
-// import Video from "next-video"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
@@ -27,7 +25,7 @@ export default function Architecture() {
   const [isLoading, setLoading] = useState(true)
  
   useEffect(() => {
-    fetch('/api/projects/list')
+    fetch('/api/projects/list?category=ARCHITECTURAL')
       .then((res) => res.json())
       .then((data) => {
         setData(data)

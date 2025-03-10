@@ -2,27 +2,21 @@
 import { useState } from 'react';
 const categories=[
   {
-    
     label:'Architecture',
-    category:'Arcitectural',
-
+    category:'ARCHITECTURAL',
   },
   {
     label: 'Interior',
-    category:'interior'
-
+    category:'INTERIOR'
   },
   {
     label: 'Landscape',
-    category:'landscape'
-
+    category:'LANDSCAPE'
   },
   {
     label: 'Structural',
-    category:'structural'
-
+    category:'STRUCTURAL'
   }
-
 ]
 export default function UploadPage() {
   const [formData, setFormData] = useState({
@@ -83,13 +77,13 @@ export default function UploadPage() {
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           required
         />
-        <div className='flex flex-col space-y-1 w-full p-2 border rounded'>
-          <label>Select Category</label>
+        
           <select 
-          className='p-2 bg-white border rounded' 
+          className="w-full p-2 border rounded bg-white" 
           value={formData.category}
           onChange={(e)=>setFormData({...formData,category:e.target.value})}
           >
+            <option value="" disabled  hidden >select category</option>
             {
               categories.map((category)=>
               <option
@@ -97,7 +91,7 @@ export default function UploadPage() {
                value={category.category}>{category.label}</option>)
             }
           </select>
-        </div>
+     
         <textarea
           placeholder="Description"
           className="w-full p-2 border rounded"
