@@ -2,7 +2,7 @@ import { NextRequest,NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/app/lib/client";
 import bcrypt from "bcryptjs";
-import auth from "../lib/auth"
+import auth from "../../../lib/auth"
 
 
 const loginRequest=z.object(

@@ -6,6 +6,8 @@ function generateToken(user){
   return jwt.sign({ user }, SECRET_KEY, { expiresIn: "1h" });
 }
 
+
+
 function verifyToken(token){
   return jwt.verify(token, SECRET_KEY)
 };
