@@ -27,7 +27,7 @@ import {Button,Spinner} from "@radix-ui/themes"
     return <div className="grid justify-items-center mt-4">
         <div><p>Login</p></div>
         <div>
-        {!processing? <form className="space-y-3 flex flex-col" onSubmit={handleSubmit}>
+        {!processing? <form className="space-y-3 flex flex-col w-96 h-auto" onSubmit={handleSubmit}>
             <input
             className="p-2 border rounded"
             type="email"

@@ -36,9 +36,9 @@ import { useState } from "react";
             setProcessing(false);
         }
     }
-    return <div className="grid  justify-items-center mt-5 bg-white ">
+    return <div className="flex flex-col mt-5  ">
                 {(!processing)?
-                    <form className="flex flex-col space-y-3 w-1000" onSubmit={handleSubmit}>
+                    <form className="flex flex-col m-auto w-96 h-auto p-3 space-y-3" onSubmit={handleSubmit}>
                         <input
                             className="p-2 border rounded"
                             type="text"

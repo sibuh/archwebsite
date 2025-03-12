@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroui/react": "^2.7.5",
     "@prisma/client": "^6.4.1",
     "@radix-ui/themes": "^3.2.0",
     "axios": "^1.5.0",
@@ -18,7 +19,7 @@
     "easymd": "^1.0.2",
     "easymde": "^2.19.0",
     "formidable": "^3.5.2",
-    "framer-motion": "^12.4.7",
+    "framer-motion": "^12.5.0",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "motion": "^12.4.10",
