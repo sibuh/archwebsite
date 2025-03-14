@@ -1,7 +1,8 @@
 "use client";
 import axios from "axios";
 import { useState } from "react";
-import {Button,Spinner} from "@radix-ui/themes"
+import {Spinner} from "@radix-ui/themes"
+import {Input, Button } from "@heroui/react";
  const Login=()=>{
     const [param,setParam]=useState({password:"",email:""});
     const[processing,setProcessing]=useState(false);
@@ -28,19 +29,21 @@ import {Button,Spinner} from "@radix-ui/themes"
         <div><p>Login</p></div>
         <div>
         {!processing? <form className="space-y-3 flex flex-col w-96 h-auto" onSubmit={handleSubmit}>
-            <input
-            className="p-2 border rounded"
-            type="email"
-            placeholder="Email"
-            onChange={(e)=>setParam({...param,email:e.target.value})}
+            <Input 
+                label="Email" 
+                type="email"
+                className="p-2 border rounded"
+
+                onChange={(e)=>setParam({...param,email:e.target.value})}
             />
-            <input
+            <Input
                 className="p-2 border rounded"
                 type="password"
                 placeholder="Password"
                 onChange={(e)=>setParam({...param,password:e.target.value})}
+
             /> 
-            <Button type="submit"><p>Login</p> </Button>
+            <Button color="primary" type="submit">Login</Button>
         </form>:<Spinner />}  
         </div>
     </div>

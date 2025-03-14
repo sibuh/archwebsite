@@ -1,5 +1,6 @@
 "use client";
-import {Button,Spinner} from "@radix-ui/themes"
+import {Spinner} from "@radix-ui/themes"
+import {Input, Button } from "@heroui/react";
 import axios from "axios";
 
 
@@ -39,14 +40,14 @@ import { useState } from "react";
     return <div className="flex flex-col mt-5  ">
                 {(!processing)?
                     <form className="flex flex-col m-auto w-96 h-auto p-3 space-y-3" onSubmit={handleSubmit}>
-                        <input
+                        <Input
                             className="p-2 border rounded"
                             type="text"
-                            placeholder="FirstName"
+                            label="FirstName"
                             value={user.first_name}
                             onChange={(e)=>setUser({...user,first_name:e.target.value})}
                         />
-                        <input
+                        <Input
                             className="p-2 border rounded"
                             type="text"
                             placeholder="LastName"
@@ -54,36 +55,36 @@ import { useState } from "react";
                             onChange={(e)=>setUser({...user,last_name:e.target.value})}
                         />
 
-                        <input
+                        <Input
                             className="p-2 border rounded"
                             type="text"
                             value={user.username}
-                            placeholder="Username"
+                            label="Username"
                             onChange={(e)=>setUser({...user,username:e.target.value})}
                         /> 
 
-                        <input
+                        <Input
                         className="p-2 border rounded"
                         type="password"
-                        placeholder="Password"
+                        label="Password"
                         value={user.password}
                         onChange={(e)=>setUser({...user,password:e.target.value})}
                         /> 
-                        <input
+                        <Input
                         className="p-2 border rounded"
                         type="email"
-                        placeholder="Email"
+                        label="Email"
                         value={user.email}
                         onChange={(e)=>setUser({...user,email:e.target.value})}
                         />
-                        <input
+                        <Input
                             className="p-2 border rounded"
                             type="text"
-                            placeholder="phone"
+                            label="phone"
                             value={user.phone}
                             onChange={(e)=>setUser({...user,phone:e.target.value})}
                         />
-                    <Button type="submit" disabled={processing} className="ring-2">Register </Button>
+                    <Button type="submit" disabled={processing} color="primary" >Register </Button>
                     </form>:<Spinner />}
            </div>
  }

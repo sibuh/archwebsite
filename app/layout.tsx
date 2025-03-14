@@ -3,7 +3,6 @@ import "./globals.css";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import "@radix-ui/themes/styles.css";
-import { Theme, ThemePanel } from "@radix-ui/themes";
 import { Providers } from "./providers";
 const geistSans = Geist({
   variable: "--font-geist-sans",
