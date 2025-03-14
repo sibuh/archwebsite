@@ -37,7 +37,6 @@ const NavBar = () => {
                 body:token})
                 .then((res)=>res.json())
                 .then((data)=>{
-                    console.log("got user:",data)
                     setEmail(data.email)
                 })
 
