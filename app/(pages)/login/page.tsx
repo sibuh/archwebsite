@@ -3,9 +3,13 @@ import axios from "axios";
 import { useState } from "react";
 import {Spinner} from "@radix-ui/themes"
 import {Input, Button } from "@heroui/react";
+import { addToast } from "@heroui/react";
+import { setTimeout } from "timers";
  const Login=()=>{
+
     const [param,setParam]=useState({password:"",email:""});
     const[processing,setProcessing]=useState(false);
+    const [isError,setIsError]=useState(false);
 
     const handleSubmit=async (e:React.FormEvent)=>{
         e.preventDefault();
@@ -17,10 +21,22 @@ import {Input, Button } from "@heroui/react";
 
             localStorage.setItem("token",response.data.token)
             setParam({password:"",email:""})
-            alert("Loged in Successfully")
-            window.location.reload();
+             addToast({
+                title: "login state",
+                description: "Log in successful",
+                color: "success",
+              })
+            
+           setTimeout(()=>window.location.reload(),5000)  
         }catch(err){
             alert(err)
+            addToast({
+                title: "login error",
+                description: "Failed to log in",
+                color: "danger",
+                timeout:5000,
+                radius:"md"
+              })
         }finally{
             setProcessing(false)
         }
