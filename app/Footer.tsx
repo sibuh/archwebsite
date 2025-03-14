@@ -35,7 +35,7 @@ const Footer = () => {
         },
     ]
     return ( 
-        <footer className="flex flex-col  justify-center space-y-7 h-40 bg-green-500 text-white">
+        <footer className="flex flex-col  justify-center space-y-7 h-40 bg-green-800 text-white">
             <div className="flex justify-center items-center">
                 <p >Our Contacts:</p>
             </div>

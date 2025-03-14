@@ -1,26 +1,54 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState  } from "react";
 import { motion } from "framer-motion";
 import SideBar from "./sidebar";
 import Image from "next/image";
 import fav from "../favicon.ico"
+import React from "react";
+import classNames from "classnames";
+import Link from "next/link"
+import { usePathname } from "next/navigation";
+
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  Button,
+  useDisclosure,
+} from "@heroui/react";
+
+
 
 export default function Nav() {
   const [isHovered, setIsHovered] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const sidebarRef = useRef<HTMLDivElement>(null);
-
-  // Close sidebar when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const currentPath=usePathname()
+  const links=[
+        {
+            href:"/about",
+            label:"about"
+        }, {
+            href:"/career",
+            label:"career"
+        }
+        , {
+            href:"/people",
+            label:"people"
+        }
+        , {
+          href:"/dashboard",
+          label:"Add Project"
       }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    ]
+
+  const handleOpen = () => {
+    onOpen();
+  };
+
+  
 
   return (
     <div className="flex items-center">
@@ -28,7 +56,7 @@ export default function Nav() {
       <motion.div
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => handleOpen()}
         className="cursor-pointer"
       >
         {isHovered || isOpen ? (
@@ -61,18 +89,50 @@ export default function Nav() {
           )}
       </motion.div>
 
-      {/* Sliding Sidebar (Appears Below the List Icon) */}
+      {/* modal appears on left side */}
       {isOpen && (
-        <motion.div
-          ref={sidebarRef}
-          initial={{ x: "-100%", opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: "-100%", opacity: 0 }}
-          transition={{ duration: 0.4 }}
-          className="absolute top-12 w-48 h-screen bg-white-800 text-black p-4 rounded-md shadow-lg"
-        >
-          <SideBar />
-        </motion.div>
+        
+        <Drawer isOpen={isOpen} placement='left' onOpenChange={onOpenChange}>
+          <DrawerContent>
+            {(onClose) => (
+              <>
+                <DrawerHeader className="flex flex-col gap-1">Drawer Title</DrawerHeader>
+                <DrawerBody>
+                  
+                <div className="min-h-screen  pb-20 font-[family-name:var(--font-geist-sans)]">
+            <ul className="flex flex-col space-y-5">
+                {links.map(link=>
+                    <Link 
+                        key={link.href}
+                        href={link.href}
+                        onClick={onClose}
+                        className={classNames({
+                        'text-stone-800': link.href===currentPath,
+                        'hover:text-red-600': link.href!==currentPath,
+                        'transition-colors':true
+                        })}
+                    >
+                        {link.label}
+
+                    </Link>
+                    )}
+                
+                  </ul>
+                
+                </div>
+                </DrawerBody>
+                <DrawerFooter>
+                  <Button color="danger" variant="light" onPress={onClose}>
+                    Close
+                  </Button>
+                  <Button color="primary" onPress={onClose}>
+                    Action
+                  </Button>
+                </DrawerFooter>
+              </>
+            )}
+          </DrawerContent>
+        </Drawer>
       )}
     </div>
   );

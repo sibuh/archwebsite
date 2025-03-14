@@ -4,7 +4,7 @@ import classNames from "classnames";
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 
-const SideBar = () => {
+const SideBar = (onClose:()=>void) => {
     const currentPath=usePathname()
     const links=[
         {
@@ -26,6 +26,7 @@ const SideBar = () => {
                     <Link 
                         key={link.href}
                         href={link.href}
+                        onClick={onClose}
                         className={classNames({
                         'text-stone-800': link.href===currentPath,
                         'hover:text-red-600': link.href!==currentPath,
