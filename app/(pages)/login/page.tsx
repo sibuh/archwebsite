@@ -18,6 +18,7 @@ import {Input, Button } from "@heroui/react";
             localStorage.setItem("token",response.data.token)
             setParam({password:"",email:""})
             alert("Loged in Successfully")
+            window.location.reload();
         }catch(err){
             alert(err)
         }finally{
@@ -26,7 +27,9 @@ import {Input, Button } from "@heroui/react";
 
     }
     return <div className="grid justify-items-center mt-4">
-        <div><p>Login</p></div>
+        <div>
+            <p>Login</p>
+        </div>
         <div>
         {!processing? <form className="space-y-3 flex flex-col w-96 h-auto" onSubmit={handleSubmit}>
             <Input 

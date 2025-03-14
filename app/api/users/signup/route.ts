@@ -28,6 +28,7 @@ export const config = {
 export async function POST(request:NextRequest){
     const body=await request.json()
     const validation= signupRequest.safeParse(body)
+    console.log("body",body)
 
     if (!validation.success) return NextResponse.json({
       error:validation.error.format(),

@@ -4,7 +4,11 @@ import Logo from "./components/logo";
 import classNames from "classnames";
 import { usePathname } from "next/navigation";
 import {motion} from 'motion/react'
+import { useEffect, useState } from "react";
 const NavBar = () => {
+    const [email,setEmail]=useState("");
+    // const [token,setToken]=useState("");
+    // const [canSeeDashboard,setCanSeeDashboard]=useState(false);
     const currentPath=usePathname()
     const links=[
         {
@@ -21,8 +25,32 @@ const NavBar = () => {
         }, 
         
     ]
+    
+
+   useEffect(()=>{
+    const token =localStorage.getItem("token");
+
+        if(!token) return;
+
+        fetch("/api/users/isAdmin",{
+                method:'POST',
+                body:token})
+                .then((res)=>res.json())
+                .then((data)=>{
+                    console.log("got user:",data)
+                    setEmail(data.email)
+                })
+
+        
+            
+
+   },[])
+
    
-    const token =localStorage.getItem("token")
+
+   console.log("can see?",email==='abel@gmail.com')
+    
+    
     return ( 
         <div className="flex border-b mt-2  px-8 h-14 ">
             <nav className="flex space-x-36 ">
@@ -48,7 +76,7 @@ const NavBar = () => {
                 </ul>
             </nav>
             {
-                token&&<div className="place-items-center m-auto">
+             (email==='abel@gmail.com')&&<div className="place-items-center m-auto">
                     <Link href={"/dashboard"}> Upload Project</Link>
                     </div>
             }
