@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useState } from "react";
-import {Spinner} from "@radix-ui/themes"
+import {Spinner} from "@heroui/react"
 import {Input, Button } from "@heroui/react";
 import { addToast } from "@heroui/react";
 import { setTimeout } from "timers";
@@ -21,16 +21,15 @@ import { setTimeout } from "timers";
             localStorage.setItem("token",response.data.token)
             setParam({password:"",email:""})
              addToast({
-                title: "login state",
+                title: "User Login",
                 description: "Log in successful",
                 color: "success",
               })
             
            setTimeout(()=>window.location.reload(),5000)  
         }catch(err){
-            alert(err)
             addToast({
-                title: "login error",
+                title: "User Login",
                 description: "Failed to log in",
                 color: "danger",
                 timeout:5000,
@@ -62,7 +61,7 @@ import { setTimeout } from "timers";
 
             /> 
             <Button color="primary" type="submit">Login</Button>
-        </form>:<Spinner />}  
+        </form>:<Spinner classNames={{label: "text-foreground mt-4"}} label="simple" variant="simple" />}  
         </div>
     </div>
 }

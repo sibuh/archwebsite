@@ -1,8 +1,7 @@
 "use client";
 
-import { useState  } from "react";
+import { useState,useEffect  } from "react";
 import { motion } from "framer-motion";
-import SideBar from "./sidebar";
 import Image from "next/image";
 import fav from "../favicon.ico"
 import React from "react";
@@ -26,6 +25,7 @@ export default function Nav() {
   const [isHovered, setIsHovered] = useState(false);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const currentPath=usePathname()
+  const [email,setEmail]=useState("");
   const links=[
         {
             href:"/about",
@@ -38,11 +38,22 @@ export default function Nav() {
             href:"/people",
             label:"people"
         }
-        , {
-          href:"/dashboard",
-          label:"Add Project"
-      }
+        
     ]
+    useEffect(()=>{
+      const token =localStorage.getItem("token");
+  
+          if(!token) return;
+
+          fetch("/api/users/isAdmin",{
+                  method:'POST',
+                  body:token})
+                  .then((res)=>res.json())
+                  .then((data)=>{
+                      setEmail(data.email)
+                  })
+  
+     },[])   
 
   const handleOpen = () => {
     onOpen();
@@ -100,7 +111,7 @@ export default function Nav() {
                 <DrawerBody>
                   
                 <div className="min-h-screen  pb-20 font-[family-name:var(--font-geist-sans)]">
-            <ul className="flex flex-col space-y-5">
+              <ul className="flex flex-col space-y-5">
                 {links.map(link=>
                     <Link 
                         key={link.href}
@@ -116,6 +127,21 @@ export default function Nav() {
 
                     </Link>
                     )}
+
+                    
+                      {
+                        (email==='abel@gmail.com')&&<div className="place-items-center m-auto">
+                               <Link href={"/dashboard"}
+                                className={classNames({
+                                'text-stone-800': "/dashboard"===currentPath,
+                                'hover:text-red-600': "/dashboard"!==currentPath,
+                                'transition-colors':true
+                                })}
+                               > 
+                                 Upload Project</Link>
+                               </div>
+                       }
+                    
                 
                   </ul>
                 
