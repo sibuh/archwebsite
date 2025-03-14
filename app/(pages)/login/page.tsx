@@ -9,7 +9,6 @@ import { setTimeout } from "timers";
 
     const [param,setParam]=useState({password:"",email:""});
     const[processing,setProcessing]=useState(false);
-    const [isError,setIsError]=useState(false);
 
     const handleSubmit=async (e:React.FormEvent)=>{
         e.preventDefault();
