@@ -110,7 +110,7 @@ export default function Nav() {
                 <DrawerHeader className="flex flex-col gap-1">Drawer Title</DrawerHeader>
                 <DrawerBody>
                   
-                <div className="min-h-screen  pb-20 font-[family-name:var(--font-geist-sans)]">
+              <div className="min-h-screen  pb-20 font-[family-name:var(--font-geist-sans)]">
               <ul className="flex flex-col space-y-5">
                 {links.map(link=>
                     <Link 
@@ -130,16 +130,17 @@ export default function Nav() {
 
                     
                       {
-                        (email==='abel@gmail.com')&&<div className="place-items-center m-auto">
-                               <Link href={"/dashboard"}
+                        (email==='abel@gmail.com')&&
+                              <Link href={"/dashboard"}
                                 className={classNames({
                                 'text-stone-800': "/dashboard"===currentPath,
                                 'hover:text-red-600': "/dashboard"!==currentPath,
                                 'transition-colors':true
                                 })}
                                > 
-                                 Upload Project</Link>
-                               </div>
+                                 Upload Project
+                              </Link>
+                               
                        }
                     
                 
