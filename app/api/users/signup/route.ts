@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {z} from "zod"
 import prisma from "../../../lib/client"
 import bcrypt from "bcryptjs";
-import auth from "../../../lib/auth"
+import {generateToken} from "../../../lib/auth"
 
 const signupRequest=z.object({
   first_name: z.string().min(3,'firstName is required').max(30),
@@ -65,7 +65,7 @@ export async function POST(request:NextRequest){
       }
      })
   
-  const token = auth.generateToken(newUser);
+  const token = generateToken(newUser);
   
    return NextResponse.json(
     {error:null, 
