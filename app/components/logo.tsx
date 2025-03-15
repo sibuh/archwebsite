@@ -41,18 +41,27 @@ export default function Nav() {
         
     ]
     useEffect(()=>{
-      const token =localStorage.getItem("token");
+      async function getUser(){
+        const token =localStorage.getItem("token");
+    
+        if(!token) return;
   
-          if(!token) return;
+        const res =await fetch("/api/users/isAdmin",{
+                   headers:{
+                    Authorization:`Bearer ${token}`
+                   }
+                });
+        if (res.ok) {
+           const data = await res.json();
+           setEmail(data.user.email);
+           console.log("verified user",data.user);
 
-          fetch("/api/users/isAdmin",{
-                  method:'POST',
-                  body:token})
-                  .then((res)=>res.json())
-                  .then((data)=>{
-                      setEmail(data.email)
-                  })
-  
+        } else {
+          console.log("Invalid token");
+        }
+
+      }
+      getUser()
      },[])   
 
   const handleOpen = () => {
@@ -103,11 +112,11 @@ export default function Nav() {
       {/* modal appears on left side */}
       {isOpen && (
         
-        <Drawer isOpen={isOpen} placement='left' onOpenChange={onOpenChange}>
+        <Drawer isOpen={isOpen} placement='left' onOpenChange={onOpenChange} size="sm" >
           <DrawerContent>
             {(onClose) => (
               <>
-                <DrawerHeader className="flex flex-col gap-1">Drawer Title</DrawerHeader>
+                <DrawerHeader className="flex flex-col gap-1">Menu</DrawerHeader>
                 <DrawerBody>
                   
               <div className="min-h-screen  pb-20 font-[family-name:var(--font-geist-sans)]">
@@ -160,6 +169,7 @@ export default function Nav() {
             )}
           </DrawerContent>
         </Drawer>
+       
       )}
     </div>
   );

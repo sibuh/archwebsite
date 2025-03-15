@@ -2,7 +2,7 @@ import { NextRequest,NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/app/lib/client";
 import bcrypt from "bcryptjs";
-import auth from "../../../lib/auth"
+import {generateToken} from "../../../lib/auth"
 
 
 const loginRequest=z.object(
@@ -22,21 +22,26 @@ export const config = {
   
 
 export async function POST(request:NextRequest){
+  
+  try{
     const body=await request.json()
     const validation=loginRequest.safeParse(body)
-  if(!validation.success)
-      return NextResponse.json(validation.error.format(),{status:400})
+    if(!validation.success)
+        return NextResponse.json(validation.error.format(),{status:400})
+    const user = await prisma.user.findUnique({
+      where: {email:body.email}
+    });
+    
+    if (!user || !(await bcrypt.compare(body.password, user.password))) {
+      return NextResponse.json(new Error("Invalid credentials"),{status:403});
+    }
+    
+    const token = generateToken(user)
+    
+    return NextResponse.json({error:null,message: "Login successful", token:token},{status:200 });
+       
+  }catch(err){
+    return NextResponse.json({error:err,message:"Failed to Login",token:""},{status:500})
+  }
 
-const user = await prisma.user.findUnique({
-  where: {email:body.email}
-});
-
-if (!user || !(await bcrypt.compare(body.password, user.password))) {
-  return NextResponse.json(new Error("Invalid credentials"),{status:403});
-}
-
- const token = auth.generateToken(user)
-
-return NextResponse.json({error:null,message: "Login successful", token:token},{status:200 });
-     
 }
