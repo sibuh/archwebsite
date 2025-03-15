@@ -144,8 +144,9 @@ export default function Nav() {
                                 className={classNames({
                                 'text-stone-800': "/dashboard"===currentPath,
                                 'hover:text-red-600': "/dashboard"!==currentPath,
-                                'transition-colors':true
+                                'transition-colors':true,
                                 })}
+                                onClick={onClose}
                                > 
                                  Upload Project
                               </Link>
