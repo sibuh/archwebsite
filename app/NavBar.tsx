@@ -1,76 +1,127 @@
-'use client';
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Logo from "./components/logo";
 import classNames from "classnames";
 import { usePathname } from "next/navigation";
-import {motion} from 'motion/react'
+import { motion } from "framer-motion";
 import { Button } from "@heroui/react";
-const NavBar = () => {
-    const currentPath=usePathname()
-    const links=[
-        {
-            href:"/",
-            label:"Home",
-        },
-        {
-            href:"/architecture",
-            label:"Architecture",
-        }, 
-        {
-            href:"/interior-design",
-            label:"Interior Design",
-        }, 
-        
-    ]
+import { Menu, X } from "lucide-react"; // Icons for mobile menu
 
-    function handleLogout(){
-        localStorage.removeItem("token")
+const NavBar = () => {
+    const currentPath = usePathname();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const links = [
+        { href: "/", label: "Home" },
+        { href: "/architecture", label: "Architecture" },
+        { href: "/interior-design", label: "Interior Design" },
+    ];
+
+    function handleLogout() {
+        localStorage.removeItem("token");
         window.location.reload();
     }
-    const hasToken=localStorage.getItem("token")?true:false
- 
-    
-    return ( 
-        <div className="flex border-b mt-2  px-8 h-14 ">
-            <nav className="flex space-x-36 ">
-                <Logo />
-                <ul className="flex space-x-10 place-items-center">
-                    {links.map(link=>
-                        <motion.div
-                        key={link.href}
-                        whileHover={{scale:1.1}}
+
+    const hasToken = !!localStorage.getItem("token");
+
+    return (
+        <div className="flex items-center justify-between border-b p-4 md:px-8 lg:px-12">
+            {/* Logo */}
+            <Logo />
+
+            {/* Mobile Menu Button */}
+            <button 
+                onClick={() => setIsOpen(!isOpen)} 
+                className="md:hidden p-2 focus:outline-none"
+            >
+                {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex space-x-10">
+                {links.map((link) => (
+                    <motion.div key={link.href} whileHover={{ scale: 1.1 }}>
+                        <Link
+                            href={link.href}
+                            className={classNames(
+                                "transition-colors text-lg",
+                                link.href === currentPath
+                                    ? "text-stone-800 font-semibold"
+                                    : "text-gray-600 hover:text-red-600"
+                            )}
                         >
-                            <Link  
-                                href={link.href} 
-                                className={classNames({
-                                    'text-stone-800': link.href===currentPath,
-                                    'hover:text-red-600': link.href!==currentPath,
-                                    'transition-colors':true
-                                })}
-                                > 
+                            {link.label}
+                        </Link>
+                    </motion.div>
+                ))}
+            </nav>
+
+            {/* Authentication Buttons */}
+            <div className="hidden md:flex">
+                {hasToken ? (
+                    <Button onPress={handleLogout} color="warning">
+                        Logout
+                    </Button>
+                ) : (
+                    <ul className="flex space-x-6 border rounded-md p-2">
+                        <li>
+                            <Link href="/signup" className="hover:text-red-600">
+                                Signup
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/login" className="hover:text-red-600">
+                                Login
+                            </Link>
+                        </li>
+                    </ul>
+                )}
+            </div>
+
+            {/* Mobile Menu */}
+            {isOpen && (
+                <div className="absolute top-16 left-0 w-full bg-white shadow-md md:hidden">
+                    <ul className="flex flex-col items-center space-y-4 p-4">
+                        {links.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className="text-lg text-gray-700 hover:text-red-600"
+                                onClick={() => setIsOpen(false)}
+                            >
                                 {link.label}
                             </Link>
-                        </motion.div>
-                    )}
-                </ul>
-            </nav>
-            
-            {
-                hasToken?(<Button 
-                    onPress={handleLogout} 
-                    color="warning" 
-                    className="justify-items-center m-auto"
-                >
-                    Logout
-                </Button>):(<div className="m-auto justify-self-end">
-                    <ul className="flex space-x-8 border rounded-md p-2 mr-auto">
-                        <li><Link href={"/signup"}>Signup</Link></li>
-                        <li><Link href={"/login"}>Login</Link> </li>
+                        ))}
+
+                        {hasToken ? (
+                            <Button onPress={handleLogout} color="warning">
+                                Logout
+                            </Button>
+                        ) : (
+                            <>
+                                <Link
+                                    href="/signup"
+                                    className="text-lg text-gray-700 hover:text-red-600"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    Signup
+                                </Link>
+                                <Link
+                                    href="/login"
+                                    className="text-lg text-gray-700 hover:text-red-600"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    Login
+                                </Link>
+                            </>
+                        )}
                     </ul>
-                </div>)
-            }
+                </div>
+            )}
         </div>
-     );
-}
- 
+    );
+};
+
 export default NavBar;
