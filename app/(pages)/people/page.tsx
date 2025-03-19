@@ -1,8 +1,11 @@
 const People = () => {
     return ( 
         <div className="justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)">
-            <p>
+            <h1>
                 This People page
+            </h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam libero praesentium ducimus dolor odit molestiae, in recusandae architecto quibusdam optio tenetur minus debitis neque vel maxime, sapiente illo nam aliquid.
             </p>
         </div>
      );

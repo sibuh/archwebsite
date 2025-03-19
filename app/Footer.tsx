@@ -50,7 +50,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="text-center mt-6">
-        <p className="text-sm">© 2025 Gomore PLC</p>
+        <p className="text-sm">© 2025 Gomor PLC</p>
       </div>
     </footer>
   );
