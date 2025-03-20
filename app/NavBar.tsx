@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Link from "next/link";
 import Logo from "./components/logo";
 import classNames from "classnames";
@@ -12,6 +12,7 @@ import { Menu, X } from "lucide-react"; // Icons for mobile menu
 const NavBar = () => {
     const currentPath = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+    const [token, setToken] = useState<string | null>(null);
 
     const links = [
         { href: "/", label: "Home" },
@@ -24,8 +25,14 @@ const NavBar = () => {
         window.location.reload();
     }
 
-    const hasToken = !!localStorage.getItem("token");
-
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        const token = localStorage.getItem("token");
+        setToken(token);
+      }
+    }, []);
+    
+   
     return (
         <div className="flex items-center justify-between border-b p-4 md:px-8 lg:px-12">
             {/* Logo */}
@@ -60,7 +67,7 @@ const NavBar = () => {
 
             {/* Authentication Buttons */}
             <div className="hidden md:flex">
-                {hasToken ? (
+                {token ? (
                     <Button onPress={handleLogout} color="warning">
                         Logout
                     </Button>
@@ -95,7 +102,7 @@ const NavBar = () => {
                             </Link>
                         ))}
 
-                        {hasToken ? (
+                        {token ? (
                             <Button onPress={handleLogout} color="warning">
                                 Logout
                             </Button>

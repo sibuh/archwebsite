@@ -25,7 +25,7 @@ export default function Nav() {
   const [isHovered, setIsHovered] = useState(false);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const currentPath=usePathname()
-  const [email,setEmail]=useState("");
+  const [role,setRole]=useState("");
   const links=[
         {
             href:"/about",
@@ -53,7 +53,7 @@ export default function Nav() {
                 });
         if (res.ok) {
            const data = await res.json();
-           setEmail(data.user.email);
+           setRole(data.user.role);
            console.log("verified user",data.user);
 
         } else {
@@ -139,7 +139,7 @@ export default function Nav() {
 
                     
                       {
-                        (email==='abel@gmail.com')&&
+                        (role==='ADMIN')&&
                               <Link href={"/dashboard"}
                                 className={classNames({
                                 'text-stone-800': "/dashboard"===currentPath,
