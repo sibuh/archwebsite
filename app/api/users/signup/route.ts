@@ -58,7 +58,6 @@ export async function POST(request:NextRequest){
       data:{ 
           first_name: body.first_name,
           last_name:body.last_name,
-          username: body.username,
           password:hashedPassword,
           email:body.email,
           phone:body.phone

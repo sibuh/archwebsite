@@ -11,7 +11,6 @@ export async function POST(request: Request) {
     const name = formData.get('name');
     const description = formData.get('description');
     const category=formData.get('category');
-    // const price = formData.get('price');
 
     // Validate fields
     if (!name || !description || !category || files.length === 0 || videos.length===0) {
