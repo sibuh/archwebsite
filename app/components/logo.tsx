@@ -56,8 +56,9 @@ export default function Nav() {
            setRole(data.user.role);
            console.log("verified user",data.user);
 
-        } else {
-          console.log("Invalid token");
+        } else if (res.status===400){
+          localStorage.setItem("token","")
+          console.log("token expired");
         }
 
       }
