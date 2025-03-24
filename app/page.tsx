@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center pt-4 bg-gray-50">
       <h1 className="text-2xl md:text-3xl font-mono font-extrabold text-center">
-        Welcome to Gomore
+        Welcome to Gomor
       </h1>
 
       {/* Services Section */}

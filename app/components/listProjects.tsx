@@ -35,14 +35,14 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
             Projects Done
           </h2>
 
-          <ul className="w-full max-w-5xl space-y-8">
+          <ul className="w-full h-auto max-w-5xl space-y-8">
             {data.map((project) => (
               <li
                 key={project.id}
                 className="flex flex-col md:flex-row items-center md:items-start gap-6 bg-white shadow-md rounded-md p-4"
               >
                 {/* Text Content */}
-                <div className="w-full md:w-1/2 space-y-2">
+                <div className="w-full h-auto md:w-1/2 space-y-2">
                   <h3 className="font-bold text-lg">{project.name}</h3>
                   <p className="text-sm">{project.description}</p>
                   <span className="text-sm font-semibold text-green-700">
@@ -54,7 +54,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                 <div className="w-full md:w-1/2">
                   <Carousel showThumbs={false} dynamicHeight={false} autoPlay infiniteLoop>
                     {project.imagePaths.map((path) => (
-                      <div key={path} className="w-full">
+                      <div key={path} className="w-full h-auto">
                         <Image
                           className="rounded-md w-full h-64 object-cover"
                           src={path}
