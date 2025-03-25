@@ -84,6 +84,23 @@ export default function Home() {
           </ul>
         </div>
       </div>
+      <div>
+        <h1>About Us</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci, a dicta quaerat repellendus quos perspiciatis nobis voluptas debitis sequi, officia recusandae mollitia quam! Labore vel facere accusamus illo alias ipsam!</p>
+      </div>
+      <div>
+        <h1>Our Partners</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus repellat laboriosam itaque hic quam ipsam et odio adipisci eligendi minus, tempore perspiciatis iure, iste, nihil aliquam fugit! Amet, deserunt placeat?</p>
+      </div>
+      <div>
+        <h1>People And Career</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus repellat laboriosam itaque hic quam ipsam et odio adipisci eligendi minus, tempore perspiciatis iure, iste, nihil aliquam fugit! Amet, deserunt placeat?</p>
+
+      </div>
+      <div>
+        <h1>Where We Are</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, magni dolorem ex eum quo, ad quia consectetur harum rem tempora</p>
+      </div>
     </div>
   );
 }
