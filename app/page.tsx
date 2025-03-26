@@ -5,7 +5,12 @@ import Architect from "../public/architect.png";
 import Interior from "../public/interior.png";
 import { Button } from "@radix-ui/themes";
 import EnterAnimation from "./components/EnterAnimation";
-import AboutPage from "./components/slideShow";
+
+import AboutPage from "./components/about";
+import Partners from "./components/partners";
+import Location from "./components/location";
+import Career from "./components/carearAndPeople";
+
 export default function Home() {
   return (
     <div className="flex flex-col items-center pt-4 bg-gray-50">
@@ -85,7 +90,14 @@ export default function Home() {
         </div>
       </div>
       <div>
+        {/* about section */}
         <AboutPage />
+        {/* partners section */}
+        <Partners />
+        {/* career and people section */}
+        <Career />
+        {/* location section */}
+        <Location />
       </div>
     </div>
   );
