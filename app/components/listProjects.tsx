@@ -33,7 +33,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
         const now = Date.now()
         const timeoutDiff = now - timeout.current
         if (timeoutDiff > 30) return setScale(1)
-        setScale(0.9)
+        setScale(0.85)
         requestAnim()
       }),
     []
