@@ -6,6 +6,11 @@ import Interior from "../public/interior.png";
 import { Button } from "@radix-ui/themes";
 import EnterAnimation from "./components/EnterAnimation";
 
+import AboutPage from "./components/about";
+import Partners from "./components/partners";
+import Location from "./components/location";
+import Career from "./components/carearAndPeople";
+
 export default function Home() {
   return (
     <div className="flex flex-col items-center pt-4 bg-gray-50">
@@ -85,21 +90,14 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <h1>About Us</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci, a dicta quaerat repellendus quos perspiciatis nobis voluptas debitis sequi, officia recusandae mollitia quam! Labore vel facere accusamus illo alias ipsam!</p>
-      </div>
-      <div>
-        <h1>Our Partners</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus repellat laboriosam itaque hic quam ipsam et odio adipisci eligendi minus, tempore perspiciatis iure, iste, nihil aliquam fugit! Amet, deserunt placeat?</p>
-      </div>
-      <div>
-        <h1>People And Career</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus repellat laboriosam itaque hic quam ipsam et odio adipisci eligendi minus, tempore perspiciatis iure, iste, nihil aliquam fugit! Amet, deserunt placeat?</p>
-
-      </div>
-      <div>
-        <h1>Where We Are</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, magni dolorem ex eum quo, ad quia consectetur harum rem tempora</p>
+        {/* about section */}
+        <AboutPage />
+        {/* partners section */}
+        <Partners />
+        {/* career and people section */}
+        <Career />
+        {/* location section */}
+        <Location />
       </div>
     </div>
   );

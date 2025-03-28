@@ -26,20 +26,7 @@ export default function Nav() {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const currentPath=usePathname()
   const [role,setRole]=useState("");
-  const links=[
-        {
-            href:"/about",
-            label:"about"
-        }, {
-            href:"/career",
-            label:"career"
-        }
-        , {
-            href:"/people",
-            label:"people"
-        }
-        
-    ]
+
     useEffect(()=>{
       async function getUser(){
         const token =localStorage.getItem("token");
@@ -120,24 +107,8 @@ export default function Nav() {
                 <DrawerHeader className="flex flex-col gap-1">Menu</DrawerHeader>
                 <DrawerBody>
                   
-              <div className="min-h-screen  pb-20 font-[family-name:var(--font-geist-sans)]">
-              <ul className="flex flex-col space-y-5">
-                {links.map(link=>
-                    <Link 
-                        key={link.href}
-                        href={link.href}
-                        onClick={onClose}
-                        className={classNames({
-                        'text-stone-800': link.href===currentPath,
-                        'hover:text-red-600': link.href!==currentPath,
-                        'transition-colors':true
-                        })}
-                    >
-                        {link.label}
-
-                    </Link>
-                    )}
-
+              <div className="min-h-svh  pb-20 font-[family-name:var(--font-geist-sans)]">
+               
                     
                       {
                         (role==='ADMIN')&&
@@ -154,9 +125,6 @@ export default function Nav() {
                                
                        }
                     
-                
-                  </ul>
-                
                 </div>
                 </DrawerBody>
                 <DrawerFooter>
