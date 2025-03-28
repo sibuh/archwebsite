@@ -63,7 +63,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
 
           <ul
             style={{ scale: scale, transition: "all 1s ease" }}
-            className="w-full h-auto max-w-5xl space-y-8 transition-transform duration-700 overflow-auto"
+            className="w-full h-auto max-w-5xl space-y-8 transition-transform duration-700"
           >
             {data.map((project) => (
               <li
@@ -83,10 +83,10 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                 style={{
                   transition: "all .3s ease-out",
                 }}
-                className="flex flex-shrink-0 flex-col md:flex-row items-center md:items-start gap-6 bg-white shadow-md rounded-md p-4 cursor-pointer"
+                className="flex flex-col md:flex-row items-center md:items-start gap-6 bg-white shadow-md rounded-md p-4 cursor-pointer overflow-auto"
               >
                 {/* Text Content */}
-                <div className="w-full h-auto md:w-1/2 space-y-2">
+                <div className="w-full h-auto md:w-1/2 space-y-2 flex-shrink-0">
                   <h3 className="font-bold text-lg">{project.name}</h3>
                   <p className="text-sm">{project.description}</p>
                   <span className="text-sm font-semibold text-green-700">
@@ -95,11 +95,11 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                 </div>
 
                 {/* Image and Video Carousel */}
-                <div className="w-full md:w-1/2">
+                <div className="w-full md:w-1/2 ">
                   <div className="flex gap-1">
                     {open.includes(project?.id) ? (
                       project.imagePaths.map((path) => (
-                        <div key={path} className="w-full h-auto">
+                        <div key={path} className="w-full h-auto flex-shrink-0">
                           <Image
                             className="rounded-md w-full h-64 object-cover"
                             src={path}
@@ -110,7 +110,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                         </div>
                       ))
                     ) : (
-                      <div className="w-full h-auto">
+                      <div className="w-full h-auto flex-shrink-0">
                         <Image
                           className="rounded-md w-full h-64 object-cover"
                           src={project.imagePaths[0]}
