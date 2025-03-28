@@ -63,7 +63,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
 
           <ul
             style={{ scale: scale, transition: "all 1s ease" }}
-            className="w-full h-auto max-w-5xl space-y-8 transition-transform duration-700"
+            className="w-full h-auto max-w-5xl space-y-8 transition-transform duration-700 overflow-auto"
           >
             {data.map((project) => (
               <li
@@ -83,7 +83,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                 style={{
                   transition: "all .3s ease-out",
                 }}
-                className="flex flex-col md:flex-row items-center md:items-start gap-6 bg-white shadow-md rounded-md p-4 cursor-pointer"
+                className="flex flex-shrink-0 flex-col md:flex-row items-center md:items-start gap-6 bg-white shadow-md rounded-md p-4 cursor-pointer"
               >
                 {/* Text Content */}
                 <div className="w-full h-auto md:w-1/2 space-y-2">
