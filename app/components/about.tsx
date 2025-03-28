@@ -16,13 +16,6 @@ const AboutPage = () => {
           innovate and create meaningful experiences that drive positive change.
         </p>
       </section>
-
-      {/* Our Partners Section with InfiniteMotionSlider */}
-      
-
-     
-
-      {/* Where We Are Section */}
      
     </div>
   );
