@@ -74,6 +74,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                     block: "center",
                   })
                   e.currentTarget.style.width = "100%"
+                  e.currentTarget.style.height = "70vh"
                   setOpen((prev: string[]) => {
                     const newArray = [...prev]
                     newArray.splice(prev.indexOf(project.id), 1, project.id)
@@ -83,7 +84,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                 style={{
                   transition: "all .3s ease-out",
                 }}
-                className="flex flex-col md:flex-row items-center md:items-start gap-6 bg-white shadow-md rounded-md p-4 cursor-pointer overflow-auto"
+                className="flex flex-col md:flex-row items-center md:items-start gap-2 bg-white shadow-md rounded-md p-4 cursor-pointer overflow-auto"
               >
                 {/* Text Content */}
                 <div className="w-full h-auto md:w-1/2 space-y-2 flex-shrink-0">
