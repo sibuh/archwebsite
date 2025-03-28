@@ -97,7 +97,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
 
                 {/* Image and Video Carousel */}
                 <div className="w-full md:w-1/2 ">
-                  <div className="flex gap-1">
+                  <div className="flex gap-1 items-center">
                     {open.includes(project?.id) ? (
                       project.imagePaths.map((path) => (
                         <div key={path} className="w-full h-auto flex-shrink-0">
@@ -105,8 +105,10 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                             className="rounded-md w-full h-64 object-cover"
                             src={path}
                             alt="Project picture"
-                            width={400}
-                            height={256}
+                            width={600}
+                            style={{
+                              height: "65vh",
+                            }}
                           />
                         </div>
                       ))
