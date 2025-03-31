@@ -54,7 +54,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
   useEffect(() => {
     addEventListener("wheel", function (e) {
       const deltaY = e.deltaY
-      if (deltaY > 5) {
+      if (Math.abs(deltaY) > 2) {
         timeout.current = Date.now()
         setActive(false)
         requestAnim()
@@ -99,9 +99,8 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
               <li
                 key={project.id}
                 id={project.id}
-                onClick={(e) => {
+                onClick={() => {
                   setActive(true)
-                  e.currentTarget.style.width = "100%"
                   setOpen((prev: string[]) => {
                     const newArray = [...prev]
                     newArray.splice(prev.indexOf(project.id), 1)
@@ -119,7 +118,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                       zIndex: 1000,
                     }),
                 }}
-                className="w-fit mx-auto flex flex-col md:flex-row items-center md:items-start gap-2 bg-white shadow-lg rounded-md p-4 cursor-pointer overflow-auto"
+                className="w-fit mx-auto flex flex-col md:flex-row items-center md:items-start gap-2 bg-white shadow-md rounded-md p-4 cursor-pointer overflow-auto"
               >
                 {/* Text Content */}
                 <div className="w-1/4 space-y-2 flex-shrink-0">
@@ -132,7 +131,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
 
                 {/* Image and Video Carousel */}
                 <div className="flex gap-1 items-center">
-                  {open.includes(project?.id) ? (
+                  {open[0] == project?.id && active ? (
                     project.imagePaths.map((path) => (
                       <div
                         key={path}
@@ -148,15 +147,13 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                       </div>
                     ))
                   ) : (
-                    <div className="flex-shrink-0">
-                      <Image
-                        className="rounded-md w-full h-64 object-cover"
-                        src={project.imagePaths[0]}
-                        alt="Project picture"
-                        width={400}
-                        height={256}
-                      />
-                    </div>
+                    <Image
+                      className="rounded-md w-full h-64 object-cover"
+                      src={project.imagePaths[0]}
+                      alt="Project picture"
+                      width={400}
+                      height={256}
+                    />
                   )}
                   {project.videoPaths.length > 0 &&
                     active &&
