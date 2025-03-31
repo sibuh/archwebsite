@@ -52,10 +52,13 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
   )
 
   useEffect(() => {
-    addEventListener("wheel", function () {
-      timeout.current = Date.now()
-      setActive(false)
-      requestAnim()
+    addEventListener("wheel", function (e) {
+      const deltaY = e.deltaY
+      if (deltaY > 5) {
+        timeout.current = Date.now()
+        setActive(false)
+        requestAnim()
+      }
     })
     return () => {
       removeEventListener("wheel", requestAnim)
