@@ -31,7 +31,7 @@ export async function POST(request:NextRequest){
     const user = await prisma.user.findUnique({
       where: {email:body.email}
     });
-    
+
     if (!user || !(await bcrypt.compare(body.password, user.password))) {
       return NextResponse.json(new Error("Invalid credentials"),{status:403});
     }
