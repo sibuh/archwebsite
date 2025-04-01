@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import { addToast } from '@heroui/react';
+import { color } from 'framer-motion';
 const categories=[
   {
     label:'Architecture',
@@ -56,10 +58,18 @@ export default function UploadPage() {
         throw new Error('Upload failed');
       }
       const result = await response.json();
-      alert('Upload successful!');
+      addToast({
+        title:'Upload',
+        description:'Upload successful!',
+        color:"success"
+      })
     } catch (error) {
       console.error(error);
-      alert('Upload failed');
+      addToast({
+        title:'Upload',
+        description:'Upload failed',
+        color:"danger"
+      })
     } finally {
       setLoading(false);
     }

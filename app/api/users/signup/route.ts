@@ -7,7 +7,7 @@ import {generateToken} from "../../../lib/auth"
 const signupRequest=z.object({
   first_name: z.string().min(3,'firstName is required').max(30),
   last_name: z.string().min(3,'lastName is required').max(30),
-  username: z.string().min(3,"username is required").max(30),
+  // username: z.string().min(3,"username is required").max(30),
   password: z.string().min(4,'password is required').max(10),
   email: z.string().email().endsWith('@gmail.com','email is required'),
   phone: z.string()

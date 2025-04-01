@@ -1,6 +1,6 @@
 "use client";
 import {Spinner} from "@radix-ui/themes"
-import {Input, Button } from "@heroui/react";
+import {Input, Button,addToast } from "@heroui/react";
 import axios from "axios";
 
 
@@ -10,7 +10,6 @@ import { useState } from "react";
     const initialState={
         first_name:"",
         last_name:"",
-        username:"",
         password:"",
         email:"",
         phone:""
@@ -30,9 +29,17 @@ import { useState } from "react";
             sessionStorage.setItem("token",res.data.token)
 
             setUser(initialState)
-            alert("Registration Successfull")
+            addToast({
+            title:"Registration",
+            description:"Registration Successfull",
+            color:"success"
+           })
         }catch(err){
-            alert(err);
+            addToast({
+                title:"User Registration",
+                description:"User Registration Failed",
+                color:"danger"
+            });
         }finally{
             setProcessing(false);
         }
@@ -54,14 +61,6 @@ import { useState } from "react";
                             value={user.last_name}
                             onChange={(e)=>setUser({...user,last_name:e.target.value})}
                         />
-
-                        <Input
-                            className="p-2 border rounded"
-                            type="text"
-                            value={user.username}
-                            label="Username"
-                            onChange={(e)=>setUser({...user,username:e.target.value})}
-                        /> 
 
                         <Input
                         className="p-2 border rounded"
