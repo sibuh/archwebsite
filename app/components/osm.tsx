@@ -15,7 +15,7 @@ const Map = () => {
   const position: [number, number] = [9.020858418116463, 38.79690183773888]; // Example: London
 
   return (
-    <MapContainer center={position} zoom={13} style={{ height: "400px", width: "100%" }}>
+    <MapContainer center={position} zoom={13} style={{ height: "300px", width: "90%", margin:"auto" }}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <Marker position={position} icon={markerIcon}>
         <Popup>Custom Location</Popup>
