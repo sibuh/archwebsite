@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { addToast } from '@heroui/react';
-import { color } from 'framer-motion';
+import { addToast,Button } from '@heroui/react';
 const categories=[
   {
     label:'Architecture',
@@ -22,8 +21,13 @@ const categories=[
 ]
 export default function UploadPage() {
   const [formData, setFormData] = useState({
-    name: '',
+    title: '',
     description: '',
+    client:'',
+    location:'',
+    year: new Date().getFullYear().toString(),    
+    size: '',    
+    typology: '',
     category:'',
   });
   const [files, setFiles] = useState<File[]>([]);
@@ -35,9 +39,14 @@ export default function UploadPage() {
     setLoading(true);
 
     const data = new FormData();
-    data.append('name', formData.name);
+    data.append('title', formData.title);
     data.append('description', formData.description);
     data.append('category',formData.category);
+    data.append('client', formData.client);
+    data.append('location', formData.location);
+    data.append('size',formData.size);
+    data.append('typology', formData.typology);
+    data.append('year', formData.year);
     
     files.forEach(file => {
       data.append('files', file);
@@ -76,15 +85,48 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">Post Project</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="flex flex-col items-center max-w-2xl mx-auto my-4 p-5 bg-white
+     rounded-md shadow-lg" >
+      <h1 className="text-2xl font-bold mb-4">Post Project</h1>
+      <form onSubmit={handleSubmit} className="space-y-4 flex flex-col items-center">
         <input
           type="text"
-          placeholder="name"
+          placeholder="title"
           className="w-full p-2 border rounded"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="client"
+          className="w-full p-2 border rounded"
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, client: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="location"
+          className="w-full p-2 border rounded"
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="size"
+          className="w-full p-2 border rounded"
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, size: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="typology"
+          className="w-full p-2 border rounded "
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, typology: e.target.value })}
           required
         />
         
@@ -128,11 +170,13 @@ export default function UploadPage() {
         
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-400"
+          className="px-4 py-2 bg-blue-500 text-white mx-auto
+           rounded hover:bg-blue-600 disabled:bg-gray-400"
           disabled={loading}
         >
-          {loading ? 'Uploading...' : 'Upload'}
+        {loading ? 'Uploading...' : 'Upload'}
         </button>
+        
       </form>
     </div>
   );

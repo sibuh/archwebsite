@@ -8,15 +8,18 @@ export async function POST(request: Request) {
     const formData = await request.formData();
     const files = formData.getAll('files');
     const videos=formData.getAll('videos');
-    const name = formData.get('name');
+    const title = formData.get('title');
     const description = formData.get('description');
     const category=formData.get('category');
+    const client=formData.get('client');
+    const location=formData.get('location');
+    const size=formData.get('size');
+    const typology=formData.get('typology');
+    const year =formData.get('year');
 
     // Validate fields
-    if (!name || !description || !category || files.length === 0 || videos.length===0) {
-      console.log("validation failed","name:",name,"description:",description,
-        "length of files:",files.length,"length of videos",videos.length)
-        console.log("category:==>",category)
+    if (!title || !description || !category||client||location||size||typology||year || files.length === 0 || videos.length===0) {
+      console.log("form data:",formData)
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -61,8 +64,13 @@ export async function POST(request: Request) {
     // Save to database
     const project = await prisma.project.create({
       data: {
-        name: name.toString(),
+        title: title.toString(),
         description: description.toString(),
+        client:client===null?'':client.toString(),
+        location:location===null?'':location.toString(),
+        size:size===null?'':size.toString(),
+        typology:typology===null?'':typology.toString(),
+        year:year===null?'':year.toString(),
         category: category==="ARCHITECURAL"?"ARCHITECTURAL":category==="LANDSCAPE"?"LANDSCAPE":category==="INTERIOR"?"INTERIOR":"STRUCTURAL",
         imagePaths,
         videoPaths,

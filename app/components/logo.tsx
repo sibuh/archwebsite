@@ -112,10 +112,10 @@ export default function Nav() {
                     
                       {
                         (role==='ADMIN')&&
-                              <Link href={"/dashboard"}
+                              <Link href={"/upload"}
                                 className={classNames({
-                                'text-stone-800': "/dashboard"===currentPath,
-                                'hover:text-red-600': "/dashboard"!==currentPath,
+                                'text-stone-800': "/upload"===currentPath,
+                                'hover:text-red-600': "/upload"!==currentPath,
                                 'transition-colors':true,
                                 })}
                                 onClick={onClose}
