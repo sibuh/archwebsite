@@ -109,8 +109,8 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                       ))}
 
                       {/* Description Box */}
-                      <div className="flex-shrink-0 bg-gray-100 p-6 rounded-md min-w-[350px] md:min-w-[400px] max-w-[600px] flex flex-col justify-between h-52 md:h-64 lg:h-80 text-center overflow-hidden shadow-md">
-                        <p className="text-lg flex-grow overflow-hidden text-ellipsis line-clamp-5 mx-auto">
+                      <div className="flex-shrink-0 bg-white p-6 rounded-md min-w-[350px] md:min-w-[400px] max-w-[600px] flex flex-col justify-between h-52 md:h-64 lg:h-80 text-center overflow-hidden shadow-md">
+                        <p className="text-lg text-justify ">
                           {project.description}
                         </p>
                         <span className="text-md font-semibold text-green-700 mt-4 mx-auto">
