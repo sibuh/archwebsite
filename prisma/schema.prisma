@@ -15,9 +15,14 @@ datasource db {
 
 model Project {
   id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(255)
+  title       String   @db.VarChar(255)
   description String   @db.Text
-  category    Category    @default(ARCHITECTURAL)
+  client      String   @db.VarChar(100)
+  location    String   @db.VarChar(255)
+  year        Int      @db.Integer
+  size        String   @db.VarChar(255)
+  typology    String   @db.VarChar(255)
+  category    Category @default(ARCHITECTURAL)
   status      Status   @default(COMPLETED)
   imagePaths  String[]
   videoPaths  String[]
