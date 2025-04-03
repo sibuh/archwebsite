@@ -17,8 +17,6 @@ const signupRequest=z.object({
 
 
 
-const SECRET_KEY = "12345678901234567890123456789012";
-
 export const config = {
     api: {
       bodyParser: false,
