@@ -104,19 +104,23 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                       <div 
                         className="flex-shrink-0 w-30 md:w-50 lg:w-[300px] h-52 md:h-64 lg:h-80 flex flex-col items-end gap-3"
                       >
-                        <p>{project.title}</p>
-                        <p>{project.location}</p>
-                        <p>{project.client}</p>
-                        <p>{project.size}</p>
+                        <p className="font-bold">{project.title}</p>
+                        <p className="text-gray-400">{project.location}</p>
                         <p>{project.year}</p>
+                        <p className="text-gray-400">CLIENT</p>
+                        <p>{project.client}</p>
+                        <p className="text-gray-400">TYPOLOGY</p>
                         <p>{project.typology}</p>
-                        <p>{project.status}</p>
+                        <p className="text-gray-400">SIZE M2/F2</p>
+                        <p>{project.size}</p>
+                        <p>STATUS</p>
+                        <p className="font-semibold text-green-700">{project.status}</p>
                       </div>
                       {/* First Half of Images */}
                       {project.imagePaths.slice(0, Math.ceil(project.imagePaths.length / 2)).map((path, index) => (
                         <div
                           key={`image-${index}`}
-                          className="flex-shrink-0 w-72 md:w-96 lg:w-[600px] h-52 md:h-64 lg:h-80 flex flex-col justify-between"
+                          className="flex-shrink-0 w-72 md:w-96 lg:w-[600px] h-72 md:h-80 lg:h-96 flex flex-col justify-between"
                         >
                           <Image
                             className="rounded-md object-cover w-full h-full"
@@ -133,16 +137,14 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                         <p className="text-lg text-justify ">
                           {project.description}
                         </p>
-                        <span className="text-md font-semibold text-green-700 mt-4 mx-auto">
-                          {project.status}
-                        </span>
+                
                       </div>
 
                       {/* Second Half of Images + Videos */}
                       {project.imagePaths.slice(Math.ceil(project.imagePaths.length / 2)).map((path, index) => (
                         <div
                           key={`image-${index}`}
-                          className="flex-shrink-0 w-72 md:w-96 lg:w-[600px] h-52 md:h-64 lg:h-80 flex flex-col justify-between"
+                          className="flex-shrink-0 w-72 md:w-96 lg:w-[600px] h-72 md:h-80 lg:h-96 flex flex-col justify-between"
                         >
                           <Image
                             className="rounded-md object-cover w-full h-full"
@@ -157,7 +159,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                       {project.videoPaths.map((path, index) => (
                         <div
                           key={`video-${index}`}
-                          className="flex-shrink-0 w-72 md:w-96 lg:w-[600px] h-52 md:h-64 lg:h-80 flex flex-col justify-between"
+                          className="flex-shrink-0 w-72 md:w-96 lg:w-[600px] h-72 md:h-80 lg:h-96 flex flex-col justify-between"
                         >
                           <video className="rounded-md w-full h-full object-cover" src={path} controls />
                         </div>
