@@ -7,7 +7,12 @@ import LoadingThreeDotsJumping from "./LoadTreeDotsJamping";
 
 export interface Project {
   id: string;
-  name: string;
+  title: string;
+  client:string
+  typology:string
+  location:string
+  year:string
+  size:string
   description: string;
   category: string;
   status: string;
@@ -69,18 +74,23 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                   }}
                   viewport={{ once: false, amount: 0.2 }} // Ensures animation triggers on scroll
                 >
-                  <h3 className="font-bold text-xl text-center mb-4">
-                    {project.name}
-                  </h3>
+                  
 
                   {!isActive ? (
-                    <Image
-                      className="rounded-md object-cover w-full h-52 md:h-64"
-                      src={project.imagePaths[0]}
-                      alt="Project Thumbnail"
-                      width={700}
-                      height={500}
-                    />
+                    <div className="flex gap-1">
+                      <div className="flex flex-col items-end w-1/3  h-52 md:h-64 ">
+                        <p>{project.title}</p>
+                        <p>{project.location}</p>
+                      </div>
+
+                      <Image
+                        className="rounded-md object-cover w-full h-52 md:h-64"
+                        src={project.imagePaths[0]}
+                        alt="Project Thumbnail"
+                        width={700}
+                        height={500}
+                      />
+                    </div>
                   ) : (
                     <div
                       className="flex gap-6 overflow-x-scroll p-2 items-stretch"
@@ -91,7 +101,17 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                           display: none;
                         }
                       `}</style>
-
+                      <div 
+                        className="flex-shrink-0 w-30 md:w-50 lg:w-[300px] h-52 md:h-64 lg:h-80 flex flex-col items-end gap-3"
+                      >
+                        <p>{project.title}</p>
+                        <p>{project.location}</p>
+                        <p>{project.client}</p>
+                        <p>{project.size}</p>
+                        <p>{project.year}</p>
+                        <p>{project.typology}</p>
+                        <p>{project.status}</p>
+                      </div>
                       {/* First Half of Images */}
                       {project.imagePaths.slice(0, Math.ceil(project.imagePaths.length / 2)).map((path, index) => (
                         <div
