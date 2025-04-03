@@ -101,7 +101,7 @@ export default function UploadPage() {
           type="text"
           placeholder="client"
           className="w-full p-2 border rounded"
-          value={formData.title}
+          value={formData.client}
           onChange={(e) => setFormData({ ...formData, client: e.target.value })}
           required
         />
@@ -109,7 +109,7 @@ export default function UploadPage() {
           type="text"
           placeholder="location"
           className="w-full p-2 border rounded"
-          value={formData.title}
+          value={formData.location}
           onChange={(e) => setFormData({ ...formData, location: e.target.value })}
           required
         />
@@ -117,7 +117,7 @@ export default function UploadPage() {
           type="text"
           placeholder="size"
           className="w-full p-2 border rounded"
-          value={formData.title}
+          value={formData.size}
           onChange={(e) => setFormData({ ...formData, size: e.target.value })}
           required
         />
@@ -125,7 +125,7 @@ export default function UploadPage() {
           type="text"
           placeholder="typology"
           className="w-full p-2 border rounded "
-          value={formData.title}
+          value={formData.typology}
           onChange={(e) => setFormData({ ...formData, typology: e.target.value })}
           required
         />

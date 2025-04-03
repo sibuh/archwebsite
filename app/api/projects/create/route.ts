@@ -18,17 +18,17 @@ export async function POST(request: Request) {
     const year =formData.get('year');
 
     // Validate fields
-    if (!title || !description || !category||client||location||size||typology||year || files.length === 0 || videos.length===0) {
+    if (!title || !description || !category||!client||!location||!size||!typology||!year || files.length === 0 || videos.length===0) {
       console.log("form data:",formData)
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
       );
     }
-
+    console.log("received form data:===>",formData)
     // Process files
-    const videoDir = path.join(process.cwd(), 'public', 'uploads',`${name}`,'videos');
-    const imageDir = path.join(process.cwd(), 'public', 'uploads',`${name}`,'images');
+    const videoDir = path.join(process.cwd(), 'public', 'uploads',`${title}`,'videos');
+    const imageDir = path.join(process.cwd(), 'public', 'uploads',`${title}`,'images');
 
     await fs.mkdir(videoDir, { recursive: true });
     await fs.mkdir(imageDir, { recursive: true });
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
 
       await fs.writeFile(filePath, Buffer.from(buffer));
 
-      imagePaths.push(`/uploads/${name}/images/${filename}`);
+      imagePaths.push(`/uploads/${title}/images/${filename}`);
       
     }
     for (const video of videos){
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
       const filePath = path.join(videoDir, filename);
       await fs.writeFile(filePath, Buffer.from(buffer));
 
-      videoPaths.push(`/uploads/${name}/videos/${filename}`);
+      videoPaths.push(`/uploads/${title}/videos/${filename}`);
       
     }
 

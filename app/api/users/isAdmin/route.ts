@@ -1,22 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-
-import {verifyToken}  from "../../../lib/auth";
+import { verifyToken } from "../../../lib/auth";
 
 export async function GET(req: NextRequest) {
-  try{
+  try {
     const token = req.headers.get("authorization")?.split(" ")[1];
 
-  if (!token) {
-    return NextResponse.json({ error: "Token missing" }, { status: 401 });
-  }
+    if (!token) {
+      return NextResponse.json({ error: "Token missing" }, { status: 401 });
+    }
 
-  const decoded = verifyToken(token);
-  if (!decoded) {
-    return NextResponse.json({ error: "Invalid token" }, { status: 401 });
-  }
+    const decoded = verifyToken(token);
+    if (!decoded) {
+      return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    }
 
-  return NextResponse.json({ user: decoded },{status:200});
-  }catch(err){
-    NextResponse.json({error:err},{status:400})
+    return NextResponse.json({ user: decoded }, { status: 200 });
+  } catch (err) {
+    return NextResponse.json({ error: err instanceof Error ? err.message : "An unknown error occurred" }, { status: 400 });
   }
 }
