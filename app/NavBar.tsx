@@ -7,7 +7,8 @@ import classNames from "classnames";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@heroui/react";
-import { Menu, X } from "lucide-react"; // Icons for mobile menu
+import { Menu, X,Home,PhoneCall,LocateIcon } from "lucide-react"; // Icons for mobile menu
+
 
 const NavBar = () => {
     const currentPath = usePathname();
@@ -15,7 +16,7 @@ const NavBar = () => {
     const [token, setToken] = useState<string | null>(null);
 
     const links = [
-        { href: "/", label: "Home" },
+        { href: "/", label: "Home", icon:<Home />},
         { href: "/architecture", label: "Architecture" },
         { href: "/interior-design", label: "Interior Design" },
     ];
@@ -54,12 +55,17 @@ const NavBar = () => {
                             href={link.href}
                             className={classNames(
                                 "transition-colors text-lg",
+                                "cursor-pointer",
                                 link.href === currentPath
                                     ? "text-stone-800 font-semibold"
                                     : "text-gray-600 hover:text-red-600"
                             )}
                         >
+                          <span className="flex gap-1">
+                            {link?.icon}
                             {link.label}
+                            </span>  
+                            
                         </Link>
                     </motion.div>
                 ))}
@@ -72,14 +78,14 @@ const NavBar = () => {
                         Logout
                     </Button>
                 ) : (
-                    <ul className="flex space-x-6 border rounded-md p-2">
+                    <ul className="flex space-x-6 p-2">
                         <li>
-                            <Link href="/signup" className="hover:text-red-600">
+                            <Link href="/signup" className="hover:text-red-600 border-2 rounded-full p-2 border-yellow-500">
                                 Signup
                             </Link>
                         </li>
                         <li>
-                            <Link href="/login" className="hover:text-red-600">
+                            <Link href="/login" className="hover:text-red-600 rounded-full border-2 border-green-700 p-2">
                                 Login
                             </Link>
                         </li>

@@ -2,12 +2,11 @@
 
 import { useState,useEffect  } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import fav from "../favicon.ico"
 import React from "react";
 import classNames from "classnames";
 import Link from "next/link"
 import { usePathname } from "next/navigation";
+import { EllipsisVertical } from "lucide-react";
 
 import {
   Drawer,
@@ -86,12 +85,7 @@ export default function Nav() {
         ) : (
 
             <motion.div>
-              <Image 
-              src={fav}
-              alt="logo image"
-              width={30}
-              height={30}
-              />
+              <EllipsisVertical />
             </motion.div>
 
           )}
