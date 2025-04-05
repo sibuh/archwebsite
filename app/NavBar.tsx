@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@heroui/react";
-import { Menu, X,Home,PhoneCall,LocateIcon } from "lucide-react"; // Icons for mobile menu
+import { Menu, X,Home } from "lucide-react"; // Icons for mobile menu
 
 
 const NavBar = () => {
@@ -80,12 +80,12 @@ const NavBar = () => {
                 ) : (
                     <ul className="flex space-x-6 p-2">
                         <li>
-                            <Link href="/signup" className="hover:text-red-600 border-2 rounded-full p-2 border-yellow-500">
+                            <Link href="/signup" className="border-2 rounded-full p-2 border-yellow-500 hover:bg-yellow-950 ">
                                 Signup
                             </Link>
                         </li>
                         <li>
-                            <Link href="/login" className="hover:text-red-600 rounded-full border-2 border-green-700 p-2">
+                            <Link href="/login" className=" rounded-full border-2 border-green-700 p-2 hover:bg-green-950 ">
                                 Login
                             </Link>
                         </li>

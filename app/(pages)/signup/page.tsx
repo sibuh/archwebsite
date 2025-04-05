@@ -16,6 +16,7 @@ import { useState } from "react";
     }
     const[user,setUser]=useState(initialState);
     const [processing,setProcessing]=useState(false);
+    const [err,setErr]=useState('');
 
     const handleSubmit =async (e: React.FormEvent)=>{
         e.preventDefault();
@@ -34,7 +35,9 @@ import { useState } from "react";
             description:"Registration Successfull",
             color:"success"
            })
-        }catch(err){
+        }catch(error){
+            console.log("error",error)
+            setErr('User Registration Failed')
             addToast({
                 title:"User Registration",
                 description:"User Registration Failed",
@@ -47,6 +50,7 @@ import { useState } from "react";
     return <div className="flex flex-col mt-5  ">
                 {(!processing)?
                     <form className="flex flex-col m-auto w-96 h-auto p-3 space-y-3" onSubmit={handleSubmit}>
+                        <p>{err}</p>
                         <Input
                             className="p-2 border rounded"
                             type="text"

@@ -9,6 +9,7 @@ import { setTimeout } from "timers";
 
     const [param,setParam]=useState({password:"",email:""});
     const[processing,setProcessing]=useState(false);
+    const [err,setErr]=useState('');
 
     const handleSubmit=async (e:React.FormEvent)=>{
         e.preventDefault();
@@ -27,7 +28,9 @@ import { setTimeout } from "timers";
               })
             
            setTimeout(()=>window.location.reload(),5000)  
-        }catch(err){
+        }catch(error){
+            console.log("error",error)
+            setErr('Failed to log in')
             addToast({
                 title: "User Login",
                 description: "Failed to log in",
@@ -46,6 +49,9 @@ import { setTimeout } from "timers";
         </div>
         <div>
         {!processing? <form className="space-y-3 flex flex-col w-96 h-auto" onSubmit={handleSubmit}>
+            <div>
+                <p>{err}</p>
+            </div>
             <Input 
                 label="Email" 
                 type="email"

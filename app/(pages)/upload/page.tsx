@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { addToast,Button } from '@heroui/react';
+import { addToast} from '@heroui/react';
 const categories=[
   {
     label:'Architecture',
@@ -67,6 +67,7 @@ export default function UploadPage() {
         throw new Error('Upload failed');
       }
       const result = await response.json();
+      console.log("uploaded project:",result)
       addToast({
         title:'Upload',
         description:'Upload successful!',
