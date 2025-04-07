@@ -16,15 +16,15 @@ const uploadRequest=z.object({
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    // const validation= uploadRequest.safeParse(data)
-    //     console.log("body",data)
+    const validation= uploadRequest.safeParse(data)
+        console.log("body",data)
     
-    //     if (!validation.success) return NextResponse.json({
-    //       error:validation.error.format(),
-    //       message:"Failed to upload project",
-    //       user:null,
-    //       token:"",
-    //      },{status:400})
+        if (!validation.success) return NextResponse.json({
+          error:validation.error.format(),
+          message:"Failed to upload project",
+          user:null,
+          token:"",
+         },{status:400})
 
     // if (!data.title || !data.description || !data.category||!data.client||!data.location||!data.size||!data.typology||!data.year) {
     //   console.log("parsed form data:",data)
