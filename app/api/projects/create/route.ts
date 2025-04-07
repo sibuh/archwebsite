@@ -4,7 +4,7 @@ import {z} from 'zod'
 
 const uploadRequest=z.object({
   title: z.string().min(3,'title is required').max(30),
-  description: z.string().min(3,'description is required').max(300),
+  description: z.string().min(3,'description is required').max(1000),
   category: z.string().min(4,'category is required').max(20),
   client: z.string().min(3,'client is required'),
   location: z.string().min(3,'location is required'),
