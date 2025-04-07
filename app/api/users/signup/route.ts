@@ -69,6 +69,6 @@ export async function POST(request:NextRequest){
     message: "Signup successful", 
     user:newUser,
     token:token,},
-  {
-    status:201});
+    {status:201}
+);
 };

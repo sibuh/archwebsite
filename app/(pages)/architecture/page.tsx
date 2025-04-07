@@ -20,6 +20,7 @@ export default function Architecture() {
         setLoading(false)
       })
   }, [])
+ console.log('dataaa', data);
  
 
   return (

@@ -6,4 +6,13 @@ module.exports = {
       bodySizeLimit: '200mb',
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      }
+    ]  
+  }
 }

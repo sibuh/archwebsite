@@ -1,83 +1,57 @@
 import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
 import prisma from '../../../lib/client'
+import {z} from 'zod'
+
+const uploadRequest=z.object({
+  title: z.string().min(3,'title is required').max(30),
+  description: z.string().min(3,'description is required').max(300),
+  category: z.string().min(4,'category is required').max(20),
+  client: z.string().min(3,'client is required'),
+  location: z.string().min(3,'location is required'),
+  typology:z.string().min(3,'typology is required'),
+  year:z.string().min(4,'year is required').max(4),
+
+});
 
 export async function POST(request: Request) {
   try {
-    const formData = await request.formData();
-    const files = formData.getAll('files');
-    const videos=formData.getAll('videos');
-    const title = formData.get('title');
-    const description = formData.get('description');
-    const category=formData.get('category');
-    const client=formData.get('client');
-    const location=formData.get('location');
-    const size=formData.get('size');
-    const typology=formData.get('typology');
-    const year =formData.get('year');
+    const data = await request.json();
+    // const validation= uploadRequest.safeParse(data)
+    //     console.log("body",data)
+    
+    //     if (!validation.success) return NextResponse.json({
+    //       error:validation.error.format(),
+    //       message:"Failed to upload project",
+    //       user:null,
+    //       token:"",
+    //      },{status:400})
 
-    // Validate fields
-    if (!title || !description || !category||!client||!location||!size||!typology||!year || files.length === 0 || videos.length===0) {
-      console.log("form data:",formData)
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
-    }
-    console.log("received form data:===>",formData)
-    // Process files
-    const videoDir = path.join(process.cwd(), 'public', 'uploads',`${title}`,'videos');
-    const imageDir = path.join(process.cwd(), 'public', 'uploads',`${title}`,'images');
+    // if (!data.title || !data.description || !data.category||!data.client||!data.location||!data.size||!data.typology||!data.year) {
+    //   console.log("parsed form data:",data)
+    //   return NextResponse.json(
+    //     { error: 'Missing required fields' },
+    //     { status: 400 }
+    //   );
+    // }
 
-    await fs.mkdir(videoDir, { recursive: true });
-    await fs.mkdir(imageDir, { recursive: true });
-
-    const imagePaths = [];
-    const videoPaths = [];
-
-    for (const file of files) {
-      if (typeof file === 'string') continue;
-      
-      const buffer = await file.arrayBuffer();
-      const filename = `${Date.now()}-${file.name}`;
-
-      const filePath = path.join(imageDir, filename);
-
-      await fs.writeFile(filePath, Buffer.from(buffer));
-
-      imagePaths.push(`/uploads/${title}/images/${filename}`);
-      
-    }
-    for (const video of videos){
-       if (typeof video==='string') continue;
-
-      const buffer = await video.arrayBuffer();
-      const filename = `${Date.now()}-${video.name}`;
-      const filePath = path.join(videoDir, filename);
-      await fs.writeFile(filePath, Buffer.from(buffer));
-
-      videoPaths.push(`/uploads/${title}/videos/${filename}`);
-      
-    }
 
     // Save to database
     const project = await prisma.project.create({
       data: {
-        title: title.toString(),
-        description: description.toString(),
-        client:client===null?'':client.toString(),
-        location:location===null?'':location.toString(),
-        size:size===null?'':size.toString(),
-        typology:typology===null?'':typology.toString(),
-        year:year===null?'':year.toString(),
-        category: category==="ARCHITECURAL"?"ARCHITECTURAL":category==="LANDSCAPE"?"LANDSCAPE":category==="INTERIOR"?"INTERIOR":"STRUCTURAL",
-        imagePaths,
-        videoPaths,
+        title: data.title,
+        description: data.description,
+        client:data.client,
+        location:data.location,
+        size:data.size,
+        typology:data.typology,
+        year:data.year,
+        category: data.category,
+        imagePaths: data.imagePaths,
+        videoPaths:data.videoPaths,
       },
     });
 
-    return NextResponse.json(project);
+    return NextResponse.json(project,{status:201});
   } catch (error) {
     console.error(error);
     return NextResponse.json(
