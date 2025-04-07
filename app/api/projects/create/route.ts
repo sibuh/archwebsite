@@ -26,13 +26,6 @@ export async function POST(request: Request) {
           token:"",
          },{status:400})
 
-    // if (!data.title || !data.description || !data.category||!data.client||!data.location||!data.size||!data.typology||!data.year) {
-    //   console.log("parsed form data:",data)
-    //   return NextResponse.json(
-    //     { error: 'Missing required fields' },
-    //     { status: 400 }
-    //   );
-    // }
 
 
     // Save to database
