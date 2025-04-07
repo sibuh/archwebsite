@@ -19,9 +19,7 @@ export default function Architecture() {
         setData(data)
         setLoading(false)
       })
-  }, [])
- console.log('dataaa', data);
- 
+  }, []) 
 
   return (
         <>
