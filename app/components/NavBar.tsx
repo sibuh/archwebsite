@@ -2,7 +2,7 @@
 
 import { useState,useEffect } from "react";
 import Link from "next/link";
-import Logo from "./components/logo";
+import Logo from "./logo";
 import classNames from "classnames";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";

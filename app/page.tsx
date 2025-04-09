@@ -11,7 +11,12 @@ import Partners from "./components/partners";
 import Location from "./components/location";
 import Career from "./components/carearAndPeople";
 
-export default function Home() {
+export default async function Home() {
+  // await new Promise((resolve)=>{
+  //   setTimeout(()=>{
+  //     resolve("2s delay")
+  //   },2000)
+  // })
   return (
     <div className="flex flex-col items-center pt-4 bg-gray-50">
       <h1 className="text-2xl md:text-3xl font-mono font-extrabold text-center">
