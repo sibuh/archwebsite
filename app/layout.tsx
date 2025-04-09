@@ -4,6 +4,12 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import "@radix-ui/themes/styles.css";
 import { Providers } from "./providers";
+import { Metadata } from "next";
+
+export const metadata:Metadata={
+  title:"gomor website",
+  description:"gomor architects website"
+}
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
