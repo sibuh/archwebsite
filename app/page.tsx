@@ -90,7 +90,7 @@ export default async function Home() {
           </ul>
         </div>
       </div>
-      <div className="flex flex-col justify-center w-full">
+      <div className="flex flex-col">
         <About  />
         <Partners />
         <Career />

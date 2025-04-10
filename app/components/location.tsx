@@ -15,7 +15,7 @@ const Location = () => {
              />
             <h1 className="text-3xl font-sans font-bold">Where We Are</h1>
             </span>
-            <p className="mt-4 text-gray-700">
+            <p className="mt-4 text-gray-700 text-left">
             Our offices are strategically located to better serve our customers worldwide. Visit
             us at any of our locations to learn more about our work and vision.
             </p>
