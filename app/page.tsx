@@ -6,17 +6,13 @@ import Interior from "../public/interior.png";
 import { Button } from "@radix-ui/themes";
 import EnterAnimation from "./components/EnterAnimation";
 
-import AboutPage from "./components/about";
+import About from "./components/about";
 import Partners from "./components/partners";
 import Location from "./components/location";
 import Career from "./components/carearAndPeople";
 
 export default async function Home() {
-  // await new Promise((resolve)=>{
-  //   setTimeout(()=>{
-  //     resolve("2s delay")
-  //   },2000)
-  // })
+ 
   return (
     <div className="flex flex-col items-center pt-4 bg-gray-50">
       <h1 className="text-2xl md:text-3xl font-mono font-extrabold text-center">
@@ -94,15 +90,11 @@ export default async function Home() {
           </ul>
         </div>
       </div>
-      <div>
-        {/* about section */}
-        <AboutPage />
-        {/* partners section */}
+      <div className="flex flex-col justify-center w-full">
+        <About  />
         <Partners />
-        {/* career and people section */}
         <Career />
-        {/* location section */}
-        <Location />
+        <Location  />
       </div>
     </div>
   );
