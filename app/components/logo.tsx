@@ -65,7 +65,7 @@ export default function Nav() {
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         onClick={() => handleOpen()}
-        className="cursor-pointer"
+        className="cursor-pointer items-center"
       >
         {isHovered || isOpen ? (
           /* List Icon (☰) when hovered or sidebar is open */
@@ -73,6 +73,7 @@ export default function Nav() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
+            className="flex"
           >
             <svg width="30" height="30"  fill="none">
               <path
@@ -82,16 +83,18 @@ export default function Nav() {
                 strokeLinecap="round"
               />
             </svg>
+            <h1 className="font-bold text-3xl items-center">Gomor </h1>
           </motion.div>
         ) : (
 
-            <motion.div>
+            <motion.div className="flex space-x-1">
               <Image 
               src={fav}
               alt="logo image"
               width={30}
               height={30}
               />
+              <h1 className="font-bold text-3xl items-center">Gomor </h1>
             </motion.div>
 
           )}

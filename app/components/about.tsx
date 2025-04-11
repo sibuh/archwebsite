@@ -3,7 +3,7 @@
 
 
 
-const AboutPage = () => {
+const About = () => {
   return (
     // Container for the entire page, centering content and adding spacing
     <div className="max-w-4xl mx-auto space-y-10 p-6">
@@ -11,7 +11,7 @@ const AboutPage = () => {
       {/* About Us Section */}
       <section className="text-center">
         <h1 className="text-3xl font-sans font-bold">About Us</h1>
-        <p className="mt-4 text-gray-700">
+        <p className="mt-4 text-gray-700 text-left">
           We are a dedicated team passionate about delivering exceptional services. Our mission is to
           innovate and create meaningful experiences that drive positive change.
         </p>
@@ -21,4 +21,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default About;
