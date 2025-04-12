@@ -83,7 +83,7 @@ export default function Nav() {
                 strokeLinecap="round"
               />
             </svg>
-            <h1 className="font-bold text-3xl items-center">Gomor </h1>
+            <h1 className="font-bold text-3xl items-center">Gomor Architects </h1>
           </motion.div>
         ) : (
 
@@ -94,7 +94,7 @@ export default function Nav() {
               width={30}
               height={30}
               />
-              <h1 className="font-bold text-3xl items-center">Gomor </h1>
+              <h1 className="font-bold text-3xl items-center">Gomor Architects </h1>
             </motion.div>
 
           )}
