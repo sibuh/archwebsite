@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import Image from "next/image";
-import BestHome from "../public/best_home.jpg";
+import BestHome from "../public/home.webp";
 import Architect from "../public/architect.png";
 import Interior from "../public/interior.png";
 import EnterAnimation from "./components/EnterAnimation";
@@ -18,22 +18,29 @@ export default function Home() {
     {
       href:"/architecture",
       bullet: <EnterAnimation />,
-      label:"Architectural Design"
+      label:"Architectural Design",
+      description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores odio necessitatibus aspernatur, tenetur officiis accusamus voluptatibus dicta nostrum aperiam dolor corrupti, quia vero veniam! Dignissimos illo debitis eaque voluptatibus voluptatum."
     },
     {
       href:"/interior-design",
       bullet: <EnterAnimation />,
-      label:"Interior Design"
+      label:"Interior Design",
+      description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores odio necessitatibus aspernatur, tenetur officiis accusamus voluptatibus dicta nostrum aperiam dolor corrupti, quia vero veniam! Dignissimos illo debitis eaque voluptatibus voluptatum."
+ 
     },
     {
       href:"/products",
       bullet: <EnterAnimation />,
-      label:"Products"
+      label:"Products",
+      description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores odio necessitatibus aspernatur, tenetur officiis accusamus voluptatibus dicta nostrum aperiam dolor corrupti, quia vero veniam! Dignissimos illo debitis eaque voluptatibus voluptatum."
+ 
     },
     {
       href:"/planning",
       bullet: <EnterAnimation />,
-      label:"Planning"
+      label:"Planning",
+      description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores odio necessitatibus aspernatur, tenetur officiis accusamus voluptatibus dicta nostrum aperiam dolor corrupti, quia vero veniam! Dignissimos illo debitis eaque voluptatibus voluptatum."
+ 
     },
   ]
   const testimonials=[
@@ -56,22 +63,19 @@ export default function Home() {
   }
  
   return (
-    <div className="flex flex-col items-center pt-4 bg-gray-100 space-y-10">
-      <div className="flex w-11/12 border-2 h-auto rounded-3xl overflow-hidden">
-        <div className="bg-white w-1/2 flex flex-col space-y-6 items-center">
+    <div className="flex flex-col items-center p-4 bg-gray-100 space-y-10">
+      <div className="flex flex-col md:flex-row w-11/12 h-auto rounded-2xl md:rounded-3xl overflow-hidden">
+        <div className="bg-white flex flex-col space-y-6 items-center w-1/2">
           <h1 className="text-center text-2xl font-sans pt-2 font-bold">Design Your Dream Projects</h1>
           <h2 className="text-left font-semibold p-4 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi cum deserunt, 
             doloremque quibusdam quos perspiciatis molestias 
             ullam eius officiis! Aspernatur quod fugiat nostrum consequatur. 
             Quo odio ullam dolore natus labore!
           </h2>
-          <Button color="primary" onPress={handlePress} className="font-bold font-sans">See Projects We Have Done</Button>
+          <Button color="primary" onPress={handlePress} className="font-bold font-sans pb-1">See Projects We Have Done</Button>
         </div>
-        <div className="bimage flex flex-col space-y-3 pt-10">
-          <h1 className="text-2xl md:text-3xl font-mono font-extrabold text-center">
-            Gomor Architects
-          </h1>
-            <p className="items-end font-bold font-mono text-2xl text-center">Architects of the day! </p>
+        <div className="flex flex-col bg-white">
+          <Image src={BestHome} alt="Home design" />
         </div>
       </div>
 
@@ -81,11 +85,10 @@ export default function Home() {
             {categories.map((category)=>{
               return <div  key={category.href} 
               className="flex flex-col  space-x-2 w-60  items-center  bg-white rounded-md">
-              {/* {category.bullet} */}
               <Link href="/interior-design" className="font-bold text-green-700 pt-1 items-center">
                 {category.label}
               </Link>
-              <p className="text-start p-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores odio necessitatibus aspernatur, tenetur officiis accusamus voluptatibus dicta nostrum aperiam dolor corrupti, quia vero veniam! Dignissimos illo debitis eaque voluptatibus voluptatum.</p>
+              <p className="text-start p-1">{category.description}</p>
             </div>
             })} 
           </ul>
