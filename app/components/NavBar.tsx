@@ -76,13 +76,13 @@ const NavBar = () => {
             <>
               <Link
                 href="/signup"
-                className="border-2 rounded-full px-4 py-2 border-yellow-500 hover:bg-yellow-500 hover:text-white transition"
+                className="border-2 rounded-full px-4 py-2 bg-blue-700"
               >
                 Signup
               </Link>
               <Link
                 href="/login"
-                className="border-2 rounded-full px-4 py-2 border-green-700 hover:bg-green-700 hover:text-white transition"
+                className="border-2 rounded-full px-4 py-2 bg-green-700"
               >
                 Login
               </Link>
@@ -126,14 +126,14 @@ const NavBar = () => {
                 <>
                   <Link
                     href="/signup"
-                    className="text-lg border px-4 py-2 rounded-full border-yellow-500 hover:bg-yellow-500 hover:text-white"
+                    className="text-lg border px-4 py-2 rounded-full bg-blue-700"
                     onClick={() => setIsOpen(false)}
                   >
                     Signup
                   </Link>
                   <Link
                     href="/login"
-                    className="text-lg border px-4 py-2 rounded-full border-green-700 hover:bg-green-700 hover:text-white"
+                    className="text-lg border px-4 py-2 rounded-full bg-green-700"
                     onClick={() => setIsOpen(false)}
                   >
                     Login

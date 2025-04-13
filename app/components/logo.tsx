@@ -83,7 +83,7 @@ export default function Nav() {
                 strokeLinecap="round"
               />
             </svg>
-            <h1 className="font-bold text-3xl items-center">Gomor Architects </h1>
+            <h1 className="font-bold text-lg items-center">Gomor Architects </h1>
           </motion.div>
         ) : (
 
@@ -94,7 +94,7 @@ export default function Nav() {
               width={30}
               height={30}
               />
-              <h1 className="font-bold text-3xl items-center">Gomor Architects </h1>
+              <h1 className="font-bold text-lg items-center">Gomor Architects </h1>
             </motion.div>
 
           )}
@@ -111,8 +111,6 @@ export default function Nav() {
                 <DrawerBody>
                   
               <div className="min-h-svh  pb-20 font-[family-name:var(--font-geist-sans)]">
-               
-                    
                       {
                         (role==='ADMIN')&&
                               <Link href={"/upload"}

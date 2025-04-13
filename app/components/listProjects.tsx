@@ -78,13 +78,13 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
 
                   {!isActive ? (
                     <div className="flex gap-1">
-                      <div className="flex flex-col items-end w-1/3  h-52 md:h-64 ">
+                      <div className="flex flex-col items-end w-1/4  h-52 md:h-64 ">
                         <p>{project.title}</p>
                         <p>{project.location}</p>
                       </div>
 
                       <Image
-                        className="rounded-md object-cover w-full h-52 md:h-64"
+                        className="rounded-md object-cover w-3/4 h-52 md:h-64"
                         src={project.imagePaths[0]}
                         alt="Project Thumbnail"
                         width={700}
