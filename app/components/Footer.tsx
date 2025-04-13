@@ -19,7 +19,15 @@ const Footer = () => {
   return (
     <footer className="bg-slate-100 py-6">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center md:flex-row md:justify-center md:space-x-12 space-y-6 md:space-y-0">
+        <div className="flex flex-col items-center md:flex-row md:justify-center md:space-x-20 space-y-6 md:space-y-0">
+          
+           {/* Nav Links */}
+           <div className="flex flex-col gap-3 items-center md:items-start">
+            <Link href="/about" className="text-lg font-semibold hover:underline">About</Link>
+            <Link href="/people" className="text-lg font-semibold hover:underline">People</Link>
+            <Link href="/Career" className="text-lg font-semibold hover:underline">Career</Link>
+          </div>
+
           {/* Social Media */}
           <ul className="flex flex-col items-center gap-3 md:items-start">
             <p className="text-lg font-semibold">Contacts</p>
@@ -45,12 +53,7 @@ const Footer = () => {
             ))}
           </ul>
 
-          {/* Nav Links */}
-          <div className="flex flex-col gap-3 items-center md:items-start">
-            <Link href="/about" className="text-lg font-semibold hover:underline">About</Link>
-            <Link href="/people" className="text-lg font-semibold hover:underline">People</Link>
-            <Link href="/Career" className="text-lg font-semibold hover:underline">Career</Link>
-          </div>
+         
         </div>
 
         {/* Copyright */}

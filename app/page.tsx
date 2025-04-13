@@ -2,14 +2,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import BestHome from "../public/home.webp";
-import Architect from "../public/architect.png";
-import Interior from "../public/interior.png";
 import EnterAnimation from "./components/EnterAnimation";
 import { Button } from "@heroui/react";
-import About from "./components/about";
 import Partners from "./components/partners";
 import Location from "./components/location";
-import Career from "./components/carearAndPeople";
 import React from "react";
 import { useRouter } from "next/navigation";
 
@@ -134,7 +130,7 @@ export default function Home() {
                 <p className="text-sm">{s.description}</p>
               </li>
             ))}
-          </ul>
+            </ul>
         </div>
         <div className="flex-1">
           <h2 className="text-center text-2xl md:text-3xl font-bold mb-4">Our Location</h2>
