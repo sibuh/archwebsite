@@ -1,140 +1,151 @@
 "use client";
 
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Logo from "./logo";
 import classNames from "classnames";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@heroui/react";
-import { Menu, X,Home } from "lucide-react"; // Icons for mobile menu
-
+import { Menu, X, Home } from "lucide-react";
 
 const NavBar = () => {
-    const currentPath = usePathname();
-    const [isOpen, setIsOpen] = useState(false);
-    const [token, setToken] = useState<string | null>(null);
+  const currentPath = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const [token, setToken] = useState<string | null>(null);
 
-    const links = [
-        { href: "/", label: "Home", icon:<Home />},
-        { href: "/architecture", label: "Architecture" },
-        { href: "/interior-design", label: "Interior Design" },
-    ];
+  const links = [
+    { href: "/", label: "Home", icon: <Home size={18} /> },
+    { href: "/architecture", label: "Architecture" },
+    { href: "/interior-design", label: "Interior Design" },
+  ];
 
-    function handleLogout() {
-        localStorage.removeItem("token");
-        window.location.reload();
+  function handleLogout() {
+    localStorage.removeItem("token");
+    window.location.reload();
+  }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
     }
+  }, []);
 
-    useEffect(() => {
-      if (typeof window !== "undefined") {
-        const token = localStorage.getItem("token");
-        setToken(token);
-      }
-    }, []);
-    
-   
-    return (
-        <div className="flex items-center justify-between border-b p-4 md:px-8 lg:px-12">
-            {/* Logo */}
-            <Logo />
+  return (
+    <header className="relative z-50 bg-white border-b px-4 py-4 md:px-8 lg:px-12 shadow-sm">
+      <div className="flex items-center justify-between">
+        {/* Logo */}
+        <Logo />
 
-            {/* Mobile Menu Button */}
-            <button 
-                onClick={() => setIsOpen(!isOpen)} 
-                className="md:hidden p-2 focus:outline-none"
-            >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden p-2 focus:outline-none"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-10">
-                {links.map((link) => (
-                    <motion.div key={link.href} whileHover={{ scale: 1.1 }}>
-                        <Link
-                            href={link.href}
-                            className={classNames(
-                                "transition-colors text-lg",
-                                "cursor-pointer",
-                                link.href === currentPath
-                                    ? "text-stone-800 font-semibold"
-                                    : "text-gray-600 hover:text-red-600"
-                            )}
-                        >
-                          <span className="flex gap-1">
-                            {link?.icon}
-                            {link.label}
-                            </span>  
-                            
-                        </Link>
-                    </motion.div>
-                ))}
-            </nav>
-
-            {/* Authentication Buttons */}
-            <div className="hidden md:flex">
-                {token ? (
-                    <Button onPress={handleLogout} color="warning">
-                        Logout
-                    </Button>
-                ) : (
-                    <ul className="flex space-x-6 p-2">
-                        <li>
-                            <Link href="/signup" className="border-2 rounded-full p-2 border-yellow-500 hover:bg-yellow-950 ">
-                                Signup
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/login" className=" rounded-full border-2 border-green-700 p-2 hover:bg-green-950 ">
-                                Login
-                            </Link>
-                        </li>
-                    </ul>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-10 items-center">
+          {links.map((link) => (
+            <motion.div key={link.href} whileHover={{ scale: 1.05 }}>
+              <Link
+                href={link.href}
+                className={classNames(
+                  "flex items-center gap-1 transition-colors text-lg",
+                  link.href === currentPath
+                    ? "text-stone-800 font-semibold"
+                    : "text-gray-600 hover:text-red-600"
                 )}
-            </div>
+              >
+                {link.icon && <span>{link.icon}</span>}
+                {link.label}
+              </Link>
+            </motion.div>
+          ))}
+        </nav>
 
-            {/* Mobile Menu */}
-            {isOpen && (
-                <div className="absolute top-16 left-0 w-full bg-white shadow-md md:hidden">
-                    <ul className="flex flex-col items-center space-y-4 p-4">
-                        {links.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="text-lg text-gray-700 hover:text-red-600"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-
-                        {token ? (
-                            <Button onPress={handleLogout} color="warning">
-                                Logout
-                            </Button>
-                        ) : (
-                            <>
-                                <Link
-                                    href="/signup"
-                                    className="text-lg text-gray-700 hover:text-red-600"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    Signup
-                                </Link>
-                                <Link
-                                    href="/login"
-                                    className="text-lg text-gray-700 hover:text-red-600"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    Login
-                                </Link>
-                            </>
-                        )}
-                    </ul>
-                </div>
-            )}
+        {/* Desktop Auth Buttons */}
+        <div className="hidden md:flex items-center space-x-4">
+          {token ? (
+            <Button onPress={handleLogout} color="warning">
+              Logout
+            </Button>
+          ) : (
+            <>
+              <Link
+                href="/signup"
+                className="border-2 rounded-full px-4 py-2 border-yellow-500 hover:bg-yellow-500 hover:text-white transition"
+              >
+                Signup
+              </Link>
+              <Link
+                href="/login"
+                className="border-2 rounded-full px-4 py-2 border-green-700 hover:bg-green-700 hover:text-white transition"
+              >
+                Login
+              </Link>
+            </>
+          )}
         </div>
-    );
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden overflow-hidden bg-white shadow-md rounded-b-lg mt-2"
+          >
+            <ul className="flex flex-col items-center gap-4 px-4 py-6">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={classNames(
+                    "text-lg flex items-center gap-2",
+                    link.href === currentPath
+                      ? "text-stone-800 font-semibold"
+                      : "text-gray-700 hover:text-red-600"
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.icon && <span>{link.icon}</span>}
+                  {link.label}
+                </Link>
+              ))}
+
+              {token ? (
+                <Button onPress={handleLogout} color="warning">
+                  Logout
+                </Button>
+              ) : (
+                <>
+                  <Link
+                    href="/signup"
+                    className="text-lg border px-4 py-2 rounded-full border-yellow-500 hover:bg-yellow-500 hover:text-white"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Signup
+                  </Link>
+                  <Link
+                    href="/login"
+                    className="text-lg border px-4 py-2 rounded-full border-green-700 hover:bg-green-700 hover:text-white"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Login
+                  </Link>
+                </>
+              )}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
 };
 
 export default NavBar;
