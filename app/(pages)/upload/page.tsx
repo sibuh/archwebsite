@@ -41,7 +41,7 @@ export default function UploadPage() {
   
   const handleUpload = async () => {
     if (files.length === 0 || videos.length === 0) {
-      throw new Error("Please select both image(s) and video(s) to upload.");
+      throw new Error("Please select image(s) and video(s) to upload.");
     }
     let imageUrls:string[]=[]
     let videoUrls:string[]=[]
@@ -97,9 +97,7 @@ export default function UploadPage() {
       
       formData.imagePaths=paths.imageUrls;
       formData.videoPaths=paths.videoUrls;
-      console.log("form data before submit===>",formData)
-
-      const response = await axios.post('/api/projects/create', formData);
+      const response = await axios.post('/api/projects/upload', formData);
 
       if (response.status!==201) {
         console.log("response",response)

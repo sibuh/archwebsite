@@ -78,13 +78,13 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
 
                   {!isActive ? (
                     <div className="flex gap-1">
-                      <div className="flex flex-col items-end w-1/3  h-52 md:h-64 ">
+                      <div className="flex flex-col items-end w-1/4  h-52 md:h-64 ">
                         <p>{project.title}</p>
                         <p>{project.location}</p>
                       </div>
 
                       <Image
-                        className="rounded-md object-cover w-full h-52 md:h-64"
+                        className="rounded-md object-cover w-3/4 h-52 md:h-64"
                         src={project.imagePaths[0]}
                         alt="Project Thumbnail"
                         width={700}
@@ -133,7 +133,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                       ))}
 
                       {/* Description Box */}
-                      <div className="flex-shrink-0 bg-white p-6 rounded-md min-w-[350px] md:min-w-[400px] max-w-[600px] flex flex-col justify-between h-52 md:h-64 lg:h-80 text-center overflow-hidden shadow-md">
+                      <div className="flex-shrink-0 bg-white p-6 rounded-md min-w-[350px] md:min-w-[400px] max-w-[600px] flex flex-col justify-between h-52 md:h-64 lg:h-80 text-center overflow-hidden">
                         <p className="text-lg text-justify ">
                           {project.description}
                         </p>

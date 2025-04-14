@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bimage{
+    background-image: url('../public/home.webp');
+    /* width: 1000px;
+    height: 600px; */
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    width: 50%;
+    min-height: auto; 
+}

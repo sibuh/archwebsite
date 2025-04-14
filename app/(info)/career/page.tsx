@@ -1,8 +1,8 @@
 const Career = () => {
     return ( 
-        <div className="justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)">
+        <div className="p-8 pb-20 gap-16 sm:p-20 font-sans">
             <h1>This Career page</h1>
-            <p>
+            <p className="text-left w-full">
                 
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. ate sequi repellat corrupti perferendis aut dolorum incidunt ut, cumque facilis adipisci, natus quae nam? Libero a dolore omnis aperiam?
             </p>

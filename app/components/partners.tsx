@@ -56,13 +56,12 @@ const InfiniteMotionSlider = () => {
 const Partners = () => {
     return (  
         <div className="max-w-4xl mx-auto space-y-10 p-6">
-            <section className="text-center">
-            <h1 className="text-3xl font-sans font-bold">Our Partners</h1>
-            <div className="mt-4 overflow-hidden rounded-md  p-6">
-            {/* This component continuously scrolls through partner logos/items */}
-            <InfiniteMotionSlider />
+            <div className="flex flex-col items-center">
+              <h1 className="text-center text-2xl md:text-3xl font-sans font-bold">Our Partners</h1>
+              <div className="mt-4 overflow-hidden rounded-md  p-6">
+                <InfiniteMotionSlider />
+              </div>
             </div>
-            </section>
         </div>
       );
 }
