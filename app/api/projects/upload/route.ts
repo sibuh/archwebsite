@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   try {
     const token =(await cookies()).get('token')?.value||''
     if (token){
-     const vToken= verifyToken(token).sub
+      const vToken= verifyToken(token).payload
         if (vToken&&vToken!=='ADMIN'){
           return NextResponse.redirect(new URL('/not-authorized', request.url));
         }

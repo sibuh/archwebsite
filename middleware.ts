@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  if(token){
+  if(token && pathname==='/upload'){
     const decoded: any = decode(token);
     if (decoded?.role !== 'ADMIN') {
       return NextResponse.redirect(new URL('/not-authorized', request.url));

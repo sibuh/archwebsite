@@ -3,7 +3,6 @@ import { z } from "zod";
 import prisma from "@/app/lib/client";
 import bcrypt from "bcryptjs";
 import {generateToken} from "../../../lib/auth"
-import { cookies } from "next/headers";
 
 
 const loginRequest=z.object(
