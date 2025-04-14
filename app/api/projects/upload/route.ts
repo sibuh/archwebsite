@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import prisma from '../../../lib/client'
 import {z} from 'zod'
-
+import { cookies } from 'next/headers';
+import { verifyToken } from '@/app/lib/auth';
 const uploadRequest=z.object({
   title: z.string().min(3,'title is required').max(30),
   description: z.string().min(3,'description is required').max(1000),
@@ -15,6 +16,14 @@ const uploadRequest=z.object({
 
 export async function POST(request: Request) {
   try {
+    const token =(await cookies()).get('token')?.value||''
+    if (token){
+     const vToken= verifyToken(token).sub
+        if (vToken&&vToken!=='ADMIN'){
+          return NextResponse.redirect(new URL('/not-authorized', request.url));
+        }
+    }
+
     const data = await request.json();
     const validation= uploadRequest.safeParse(data)
         console.log("body",data)

@@ -97,7 +97,7 @@ export default function UploadPage() {
       
       formData.imagePaths=paths.imageUrls;
       formData.videoPaths=paths.videoUrls;
-      const response = await axios.post('/api/projects/create', formData);
+      const response = await axios.post('/api/projects/upload', formData);
 
       if (response.status!==201) {
         console.log("response",response)
