@@ -75,10 +75,10 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center px-4 py-8 bg-gray-100 space-y-10">
       {/* Hero Section */}
-      <div className="flex flex-col md:flex-row w-full max-w-7xl rounded-2xl overflow-hidden shadow-md bg-white">
+      <div className="flex flex-col md:flex-row w-full max-w-7xl rounded-2xl overflow-hidden bg-gray-900">
         <div className="flex flex-col space-y-6 p-6 md:w-1/2">
-          <h1 className="text-2xl md:text-3xl font-bold text-center md:text-left">Design Your Dream Projects</h1>
-          <h2 className="text-base md:text-lg font-medium">
+          <h1 className="text-2xl md:text-3xl font-bold text-center md:text-left text-white">Design Your Dream Projects</h1>
+          <h2 className="text-base md:text-lg font-medium text-white" >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi cum deserunt...
           </h2>
           <Button color="primary" onPress={handlePress} className="self-start font-bold">See Projects We Have Done</Button>
@@ -89,9 +89,9 @@ export default function Home() {
       </div>
 
       {/* Categories Section */}
-      <div className="flex flex-col p-6 w-full max-w-7xl bg-gray-50 rounded-2xl shadow-xl space-y-6">
+      <div className="flex flex-col p-6 w-full max-w-7xl bg-gray-50 rounded-2xl space-y-6">
         <h2 className="text-center text-2xl md:text-3xl font-bold">What we do!</h2>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 justify-center gap-4">
           {categories.map((category) => (
             <div key={category.href} className="flex flex-col w-full sm:w-72 bg-white rounded-md p-4 shadow-sm">
               <Link href={category.href} className="text-green-700 font-semibold text-lg">{category.label}</Link>
@@ -115,7 +115,7 @@ export default function Home() {
       </div>
 
       {/* Partners Section */}
-      <div className="w-full max-w-7xl bg-white p-6 rounded-xl">
+      <div className="w-full max-w-7xl bg-white rounded-xl overflow-hidden px-10 ">
         <Partners />
       </div>
 

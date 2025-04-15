@@ -19,12 +19,12 @@ const InfiniteMotionSlider = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="overflow-hidden p-6"
+    <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div
-        className="flex gap-6 whitespace-nowrap"
+        className="flex gap-6"
         animate={isHovered ? { x: "0%" } : { x: ["0%", "-100%"] }}
         transition={{
           repeat: isHovered ? 0 : Infinity,
@@ -55,14 +55,10 @@ const InfiniteMotionSlider = () => {
 
 const Partners = () => {
     return (  
-        <div className="max-w-4xl mx-auto space-y-10 p-6">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center space-y-6">
               <h1 className="text-center text-2xl md:text-3xl font-sans font-bold">Our Partners</h1>
-              <div className="mt-4 overflow-hidden rounded-md  p-6">
-                <InfiniteMotionSlider />
-              </div>
+              <InfiniteMotionSlider />
             </div>
-        </div>
       );
 }
  
