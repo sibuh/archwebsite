@@ -55,8 +55,8 @@ const NavBar = () => {
                 className={classNames(
                   "flex items-center gap-1 transition-colors text-lg",
                   link.href === currentPath
-                    ? "text-stone-800 font-semibold"
-                    : "text-gray-600 hover:text-red-600"
+                    ? "text-stone-800 font-semibold hover:bg-slate-700 rounded-md"
+                    : "text-gray-600 hover:text-red-600 hover:bg-slate-700 rounded-md"
                 )}
               >
                 {link.icon && <span>{link.icon}</span>}

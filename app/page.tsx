@@ -76,15 +76,15 @@ export default function Home() {
     <div className="flex flex-col items-center px-4 py-8 bg-gray-100 space-y-10">
       {/* Hero Section */}
       <div className="flex flex-col md:flex-row w-full max-w-7xl rounded-2xl overflow-hidden bg-gray-900">
-        <div className="flex flex-col space-y-6 p-6 md:w-1/2">
-          <h1 className="text-2xl md:text-3xl font-bold text-center md:text-left text-white">Design Your Dream Projects</h1>
-          <h2 className="text-base md:text-lg font-medium text-white" >
+        <div className="p-6 md:w-1/2">
+          <h1 className="text-2xl font-bold text-center md:text-left text-white md:text-6xl uppercase">Design Your Dream Projects</h1>
+          <h2 className="text-base md:text-lg font-medium text-white pt-5" >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi cum deserunt...
           </h2>
-          <Button color="primary" onPress={handlePress} className="self-start font-bold">See Projects We Have Done</Button>
+          <Button color="primary" onPress={handlePress} className="self-start font-bold mt-5">See Projects We Have Done</Button>
         </div>
-        <div className="md:w-1/2 w-full">
-          <Image src={BestHome} alt="Home design" className="w-full h-full object-cover" />
+        <div className="md:w-1/2 w-full p-5">
+          <Image src={BestHome} alt="Home design" className="w-full h-full object-center border-red-600 rounded-3xl border-3" />
         </div>
       </div>
 

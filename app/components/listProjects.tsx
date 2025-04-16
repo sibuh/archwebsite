@@ -79,7 +79,7 @@ const ListProjects = ({ isLoading, data }: ListProps) => {
                   {!isActive ? (
                     <div className="flex gap-1">
                       <div className="flex flex-col items-end w-1/4  h-52 md:h-64 ">
-                        <p>{project.title}</p>
+                        <p className="font-bold">{project.title}</p>
                         <p>{project.location}</p>
                       </div>
 
